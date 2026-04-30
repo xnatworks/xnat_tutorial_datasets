@@ -18,6 +18,13 @@ These files are small workshop subsets, not full public datasets.
 | `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip` | TCIA QIN-PROSTATE-Repeatability | The Cancer Imaging Archive, QIN-PROSTATE-Repeatability collection; Creative Commons Attribution 4.0 International |
 | `datasets/xnat-tutorial/tcia_collection_smallest/archive.zip` | TCIA QIN-PROSTATE-Repeatability | Same tiny series as `tcia_dicom_intro`, used as the fallback for collection-mode selection |
 | `datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip` | TCIA Mouse-Astrocytoma | The Cancer Imaging Archive, Mouse-Astrocytoma collection; Creative Commons Attribution 3.0 Unported |
+| `datasets/grouplevel/msd/Task04_Hippocampus.tar` | Medical Segmentation Decathlon / MONAI mirror | MSD Task04 Hippocampus; CC-BY-SA 4.0 |
+
+The group-level tutorial source catalog is in
+`datasets/grouplevel/sources.yml`. Only the small MSD Hippocampus archive is
+mirrored as a normal GitHub raw file. Other referenced group-level sources are
+hundreds of MB to tens of GB and need GitHub release assets, object storage, or
+another large-file endpoint before they can be used as direct fallbacks.
 
 ## OpenNeuro ds000102 Flanker Subset
 
@@ -111,6 +118,46 @@ Tutorial use:
 
 - Used as a tiny preclinical MRI option for XNAT import practice.
 - Routed through XNAT's prearchive with auto-archive enabled.
+
+## Medical Segmentation Decathlon Task04 Hippocampus
+
+Original source:
+
+- MONAI MSD mirror:
+  `https://msd-for-monai.s3.us-west-2.amazonaws.com/Task04_Hippocampus.tar`
+- Medical Segmentation Decathlon:
+  `http://medicaldecathlon.com/`
+
+Credit:
+
+- Data are from the Medical Segmentation Decathlon Task04 Hippocampus
+  challenge dataset.
+- License label used by the tutorial importer: Creative Commons
+  Attribution-ShareAlike 4.0 International.
+
+Mirrored files:
+
+- `datasets/grouplevel/msd/Task04_Hippocampus.tar`
+
+Tutorial use:
+
+- Used by the nnU-Net dataset builder walkthrough through the Group-Level
+  tutorial importer.
+- The default tutorial import uses a smoke subset of up to 10 training cases;
+  users can request the full set from the downloader UI.
+
+## Group-Level Source Catalog
+
+`datasets/grouplevel/sources.yml` lists every public source exposed by the
+Group-Level tutorial import UI: OpenNeuro ds000102 Flanker, the MSD tasks, and
+the preclinical TumSeg micro-CT dataset. The catalog records source URL,
+expected size, license label, and whether a raw GitHub fallback is present.
+
+Large entries are intentionally cataloged but not mirrored as normal Git files
+because GitHub rejects individual files over 100 MB and raw repository storage
+is not appropriate for multi-GB archives. If those need first-class fallbacks,
+publish them as release assets or in object storage and configure the importer
+source URL properties to those endpoints.
 
 ## Checksums
 

@@ -1,0 +1,156 @@
+# Public tutorial sources referenced by the Group-Level tutorial download UI.
+# `fallback_status: mirrored_raw` means the fallback exists as a normal file in
+# this repository and can be downloaded from raw.githubusercontent.com.
+#
+# `fallback_status: cataloged_large_source` means the source is documented here
+# but is too large for a normal GitHub raw repository file. Publish those as
+# release assets or object-storage files before using them as direct fallbacks.
+
+sources:
+  - key: openneuro_flanker_fitlins
+    family: openneuro
+    source_dataset_id: ds000102
+    display_label: OpenNeuro Flanker Demo
+    source_label: OpenNeuro ds000102 Flanker task
+    source_url: https://s3.amazonaws.com/openneuro.org/ds000102
+    dataset_page: https://openneuro.org/datasets/ds000102
+    license_label: PDDL
+    expected_size_bytes: 1775585682
+    full_subject_count: 26
+    expected_scan_count: 78
+    fallback_status: cataloged_large_source
+    fallback_note: The tutorial repo currently mirrors only the tiny one-subject ds000102 subset used by the basic BIDS walkthrough.
+
+  - key: task01_brain_tumour
+    family: msd
+    source_dataset_id: Task01_BrainTumour
+    display_label: MSD Brain Tumour Demo
+    source_label: Medical Segmentation Decathlon Task01_BrainTumour
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task01_BrainTumour.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 7608266240
+    full_subject_count: 484
+    fallback_status: cataloged_large_source
+
+  - key: task02_heart
+    family: msd
+    source_dataset_id: Task02_Heart
+    display_label: MSD Heart Demo
+    source_label: Medical Segmentation Decathlon Task02_Heart
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task02_Heart.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 455721472
+    full_subject_count: 20
+    fallback_status: cataloged_large_source
+
+  - key: task03_liver
+    family: msd
+    source_dataset_id: Task03_Liver
+    display_label: MSD Liver Demo
+    source_label: Medical Segmentation Decathlon Task03_Liver
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task03_Liver.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 28925891584
+    full_subject_count: 131
+    fallback_status: cataloged_large_source
+
+  - key: task04_hippocampus
+    family: msd
+    source_dataset_id: Task04_Hippocampus
+    display_label: MSD Hippocampus Demo
+    source_label: Medical Segmentation Decathlon Task04_Hippocampus
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task04_Hippocampus.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 28425216
+    full_subject_count: 260
+    fallback_status: mirrored_raw
+    fallback_path: datasets/grouplevel/msd/Task04_Hippocampus.tar
+    fallback_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/grouplevel/msd/Task04_Hippocampus.tar
+
+  - key: task05_prostate
+    family: msd
+    source_dataset_id: Task05_Prostate
+    display_label: MSD Prostate Demo
+    source_label: Medical Segmentation Decathlon Task05_Prostate
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task05_Prostate.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 239839232
+    full_subject_count: 32
+    fallback_status: cataloged_large_source
+
+  - key: task06_lung
+    family: msd
+    source_dataset_id: Task06_Lung
+    display_label: MSD Lung Demo
+    source_label: Medical Segmentation Decathlon Task06_Lung
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task06_Lung.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 9163696640
+    full_subject_count: 63
+    fallback_status: cataloged_large_source
+
+  - key: task07_pancreas
+    family: msd
+    source_dataset_id: Task07_Pancreas
+    display_label: MSD Pancreas Demo
+    source_label: Medical Segmentation Decathlon Task07_Pancreas
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task07_Pancreas.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 12289971712
+    full_subject_count: 281
+    fallback_status: cataloged_large_source
+
+  - key: task08_hepatic_vessel
+    family: msd
+    source_dataset_id: Task08_HepaticVessel
+    display_label: MSD Hepatic Vessel Demo
+    source_label: Medical Segmentation Decathlon Task08_HepaticVessel
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task08_HepaticVessel.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 9347254784
+    full_subject_count: 303
+    fallback_status: cataloged_large_source
+
+  - key: task09_spleen
+    family: msd
+    source_dataset_id: Task09_Spleen
+    display_label: MSD Spleen Demo
+    source_label: Medical Segmentation Decathlon Task09_Spleen
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task09_Spleen.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 1610352640
+    full_subject_count: 41
+    fallback_status: cataloged_large_source
+
+  - key: task10_colon
+    family: msd
+    source_dataset_id: Task10_Colon
+    display_label: MSD Colon Demo
+    source_label: Medical Segmentation Decathlon Task10_Colon
+    source_url: https://msd-for-monai.s3.us-west-2.amazonaws.com/Task10_Colon.tar
+    dataset_page: http://medicaldecathlon.com/
+    license_label: CC-BY-SA 4.0
+    expected_size_bytes: 6242760704
+    full_subject_count: 126
+    fallback_status: cataloged_large_source
+
+  - key: preclinical_tumseg
+    family: tumseg
+    source_dataset_id: TumSeg_Preclinical_Mouse_Tumor
+    display_label: Preclinical Mouse Tumor micro-CT Demo
+    source_label: 3D whole body preclinical micro-CT database of subcutaneous tumors in mice
+    source_url: https://erda.ku.dk/archives/ba4fcd9bfa0fb581d593297dd43d1fd1/TumSeg%20database.zip
+    dataset_page: https://erda.ku.dk/archives/ba4fcd9bfa0fb581d593297dd43d1fd1/published-archive.html
+    license_label: See source dataset terms
+    expected_size_bytes: 2215359430
+    full_subject_count: 452
+    fallback_status: cataloged_large_source
