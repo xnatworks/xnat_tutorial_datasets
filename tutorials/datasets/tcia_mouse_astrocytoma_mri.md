@@ -9,7 +9,7 @@ point, multi-modal (T2w anatomy, contrast-enhanced T1w, DWI, sometimes
 DCE), and ships with hand-drawn tumor segmentations on a subset of
 sessions.
 
-For workshops, the value is two-fold:
+The teaching value is two-fold:
 
 1. **Non-human imaging in DICOM**. Most XNAT demos use human data;
    showing that the same archive, viewer, and pipeline tooling works
@@ -61,7 +61,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 | Atlas registration | Allen Mouse Brain Atlas — see `AIDAmri` |
 | Full preclinical pipeline | [RABIES](../04-rabies-rodent-fmri.md) (needs a paired functional series — pair with OpenNeuro ds002551 for that) |
 
-## Workshop flow
+## Walkthrough
 
 1. Open the session in the XNAT viewer. Note voxel size (typically
    ~100 µm isotropic for mouse MRI vs 1 mm for human).
@@ -80,7 +80,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - TCIA hosts a surprising amount of preclinical data — Mouse-
   Astrocytoma, Mouse-Mammary, RIDER-Lung-PET-CT-Mouse, more. XNAT
   ingests them with no special handling.
-- foundingGIDE (the program adjacent to this tutorial) explicitly
+- any XNAT tutorial program (the program adjacent to this tutorial) explicitly
   bridges preclinical and clinical data management — this dataset is
   the symbol of that bridge.
 - The XNAT data model has no concept of "patient species". Custom

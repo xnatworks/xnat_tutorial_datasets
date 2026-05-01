@@ -52,7 +52,7 @@ group.
   preprocessable and the project resolves as a BIDS dataset for
   group-level work
 
-## Workshop flow
+## Walkthrough
 
 1. Show the project's subject list — explain why "1 dataset, many
    subjects" needs a different ingest pattern (Group-Level plugin) than

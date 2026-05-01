@@ -14,7 +14,7 @@ front-end engineer can use it to test that a viewer renders weird affine
 matrices, anisotropic spacing, masked overlays, and probability maps
 correctly.
 
-For an XNAT workshop, this is the fastest way to populate a project with
+For an XNAT course or demo, this is the fastest way to populate a project with
 visually distinct, label-rich volumes you can use to demo the viewer
 stack (Workbench / NiiVue / OHIF / VolView).
 
@@ -51,7 +51,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - A project-level `NIFTI` resource containing the volumes (no per-scan
   ingest — these are reference images, not patient sessions)
 
-## Workshop flow
+## Walkthrough
 
 Pick 2-3 contrasting volumes and walk through:
 

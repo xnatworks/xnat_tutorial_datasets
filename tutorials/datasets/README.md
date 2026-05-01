@@ -25,7 +25,7 @@ These walkthroughs are the human-facing companion.
 
 ## Cross-cutting themes
 
-Some workshop arcs span multiple datasets:
+Some tutorial arcs span multiple datasets:
 
 - **DICOM → NIfTI → BIDS** — `tcia_dicom_intro` → `dcm2niix` →
   `reproin_dicom_to_bids` → BIDS-Apps
@@ -42,7 +42,7 @@ Some workshop arcs span multiple datasets:
 - **Viewers** — `niivue_demo_images` is the easiest "open lots of
   volumes fast" project for viewer demos
 
-## Using these in a workshop
+## Using these in a course
 
 1. Pre-load the relevant datasets via the plugin before the session
    (some pull from NBIA; allow time for the API call).
@@ -60,4 +60,4 @@ emphasize *data*, the container docs emphasize *workflow*.
 ## Status
 
 Walkthroughs are first drafts — please refine for tone, depth, and
-local site policies before workshop use.
+local site policies before instructor-led use.

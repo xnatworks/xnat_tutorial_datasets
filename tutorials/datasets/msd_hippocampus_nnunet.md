@@ -11,7 +11,7 @@ result is a non-trivial 3-class segmentation.
 
 It's the dataset behind Isensee et al.'s nnU-Net paper and the
 standard "did my install work?" benchmark for the framework. Loading it
-into XNAT lets a workshop demo the **full lifecycle**: data → train →
+into XNAT lets a tutorial demo the **full lifecycle**: data → train →
 inference → segmentation back into the project archive.
 
 | | |
@@ -23,7 +23,7 @@ inference → segmentation back into the project archive.
 | Plugin id | `msd_hippocampus_nnunet` |
 | Loader | `grouplevel_nnunet_msd` |
 | Default project | `XNAT_TUTORIAL_SEG` |
-| Default training cases | 10 (workshop subset) |
+| Default training cases | 10 (tutorial subset) |
 
 ## Download via the tutorial plugin
 
@@ -49,7 +49,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - The label resource carries the ground-truth segmentation (the part
   that distinguishes a *training* dataset from a *test* one)
 
-## Workshop flow
+## Walkthrough
 
 1. Inspect a session: T1w image + matching label NIfTI overlaid in
    Workbench.

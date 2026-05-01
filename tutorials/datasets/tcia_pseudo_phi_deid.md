@@ -45,7 +45,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - Project `XNAT_TUTORIAL_DEID`
 - 1 subject, 1 CT scan, 2 DICOM files
 
-## Workshop flow
+## Walkthrough
 
 1. **Look at the headers as imported** — XNAT scan page → DICOM Headers.
    Note PatientName, PatientBirthDate, PatientID, AccessionNumber, plus

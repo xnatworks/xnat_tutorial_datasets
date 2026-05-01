@@ -58,7 +58,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 | First-level GLM | `FitLins` — see [fitlins_flanker_demo.md](fitlins_flanker_demo.md) for the group-level version |
 | QC | `MRIQC` |
 
-## Workshop flow
+## Walkthrough
 
 1. Inspect the BIDS resource on the session. Show
    `dataset_description.json`, `participants.tsv`, the events.tsv with
@@ -76,7 +76,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
   pipelines compose without configuration. fMRIPrep, FitLins, MRIQC,
   TractSeg, etc. all consume the same BIDS resource.
 - ds000102 is small enough to land + preprocess + analyze in one
-  workshop slot, but realistic enough that the activation maps are
+  course slot, but realistic enough that the activation maps are
   publishable in concept.
 - The XNAT BIDS resource model lets you keep raw DICOMs on scans *and*
   the BIDS view on the session in the same archive — no fork.

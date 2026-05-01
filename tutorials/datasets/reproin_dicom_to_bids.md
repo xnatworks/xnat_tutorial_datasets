@@ -47,7 +47,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - 1 subject, 1 MR session, 7 scans (T1w, T2w, BOLD ×N, DWI, fmap)
 - Original DICOMs preserved on each scan
 
-## Workshop flow
+## Walkthrough
 
 1. Inspect DICOM ProtocolName fields — note the `acq-`, `run-`, `dir-`
    conventions baked in.

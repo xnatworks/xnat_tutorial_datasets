@@ -10,7 +10,7 @@ at load time. No hardcoded series UID.
 This matters for institutions: site policy may forbid pinning a single
 series UID into a tutorial config because the upstream collection can
 mutate. Asking the NBIA API for "give me the smallest MR series in this
-collection right now" produces a stable workshop demo without a
+collection right now" produces a stable tutorial demo without a
 maintenance burden when TCIA reorganizes a collection.
 
 It's also a teaching point in itself: the same dataset repository can be
@@ -57,7 +57,7 @@ Same shape as `tcia_dicom_intro`:
 Identical to `tcia_dicom_intro`. The teaching value here is **not** the
 data — it's the **mechanism**.
 
-## Workshop flow (5 minutes)
+## Walkthrough (5 minutes)
 
 1. Show the manifest entries side-by-side: `tcia_dicom_intro` (series
    UID pinned) vs `tcia_collection_smallest` (collection-driven).

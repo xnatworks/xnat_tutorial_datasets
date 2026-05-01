@@ -1,8 +1,8 @@
-# XNAT Container Tutorials
+# XNAT Tutorials
 
 Walkthrough tutorials that pair each demo container with a downloadable
-sample dataset from this repository. Designed for live workshops
-(foundingGIDE 2026, Heidelberg) and self-paced learning.
+sample dataset from this repository. Self-paced and instructor-led use
+both supported.
 
 ## Container walkthroughs
 
@@ -19,7 +19,7 @@ One per dataset shipped by the
 [xnat_tutorial_plugin](https://github.com/xnatworks/xnat_tutorial_plugin)
 manifest. Focuses on **why the data matters** first, XNAT plumbing
 second. See [`datasets/README.md`](datasets/README.md) for the index and
-cross-cutting workshop arcs.
+cross-cutting tutorial arcs.
 
 Per-dataset upstream sources, licenses, and local-mirror fallbacks are
 listed in [`sources.yml`](sources.yml).
@@ -44,7 +44,7 @@ inline.
 
 ## Dataset download
 
-Datasets in this repo are workshop-sized subsets. Tutorials reference them
+Datasets in this repo are course-sized subsets. Tutorials reference them
 via:
 
 ```
@@ -65,6 +65,7 @@ etc.) — also documented in the [main README](../README.md).
 
 ## Maintenance
 
-This branch (`tutorials/foundinggide-2026`) is the working branch for the
-May 2026 workshop materials. Stable additions get rebased onto `main`
-afterwards.
+Tutorials live under `tutorials/`. Datasets they reference are mirrored
+under `datasets/` (raw GitHub) and pulled live from upstream when
+available. The plugin manifest at `tutorials/sources.yml` is the
+authoritative dataset source list.
