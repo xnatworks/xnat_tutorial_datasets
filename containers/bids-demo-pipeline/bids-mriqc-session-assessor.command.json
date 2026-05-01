@@ -1,11 +1,11 @@
 {
   "name": "bids-mriqc-assessor",
   "description": "Runs MRIQC and creates an assessor with extracted metadata",
-  "version": "1.1",
+  "version": "1.3",
   "schema-version": "1.0",
   "image": "nipreps/mriqc:24.0.2",
   "type": "docker",
-  "command-line": "/bin/sh -c 'printf \"{\\\"session_id\\\":\\\"#SESSION_ID#\\\",\\\"session_label\\\":\\\"#SESSION_LABEL#\\\",\\\"project\\\":\\\"#PROJECT#\\\",\\\"app_name\\\":\\\"mriqc\\\",\\\"app_version\\\":\\\"24.0.2\\\",\\\"extract\\\":{\\\"modality_list\\\":{\\\"op\\\":\\\"entity\\\",\\\"glob\\\":\\\"sub-*/**/*.json\\\",\\\"entity\\\":\\\"suffix\\\"},\\\"iqm_count\\\":{\\\"op\\\":\\\"count\\\",\\\"glob\\\":\\\"sub-*/**/*.json\\\"},\\\"has_group_metrics\\\":{\\\"op\\\":\\\"exists\\\",\\\"glob\\\":\\\"group_*.tsv\\\"},\\\"has_classifier_output\\\":{\\\"op\\\":\\\"exists\\\",\\\"glob\\\":\\\"*_pred.csv\\\"},\\\"t1w_cnr\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/anat/*T1w.json\\\",\\\"path\\\":\\\"cnr\\\"},\\\"t1w_snr_total\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/anat/*T1w.json\\\",\\\"path\\\":\\\"snr_total\\\"},\\\"t1w_cjv\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/anat/*T1w.json\\\",\\\"path\\\":\\\"cjv\\\"},\\\"t1w_efc\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/anat/*T1w.json\\\",\\\"path\\\":\\\"efc\\\"},\\\"t1w_fber\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/anat/*T1w.json\\\",\\\"path\\\":\\\"fber\\\"},\\\"bold_tsnr\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/func/*bold.json\\\",\\\"path\\\":\\\"tsnr\\\"},\\\"bold_fd_mean\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/func/*bold.json\\\",\\\"path\\\":\\\"fd_mean\\\"},\\\"bold_fd_perc\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/func/*bold.json\\\",\\\"path\\\":\\\"fd_perc\\\"},\\\"bold_dvars_std\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/func/*bold.json\\\",\\\"path\\\":\\\"dvars_std\\\"},\\\"bold_gcor\\\":{\\\"op\\\":\\\"read_json\\\",\\\"glob\\\":\\\"sub-*/func/*bold.json\\\",\\\"path\\\":\\\"gcor\\\"}}}\" > /output/.xnat_metadata.json && mriqc /input /output participant --no-sub --nprocs 1 --omp-nthreads 1 --mem_gb 28 -v #FLAGS#'",
+  "command-line": "mriqc /input /output participant --no-sub --nprocs 1 --omp-nthreads 1 --mem_gb 28 -v #FLAGS#",
   "override-entrypoint": true,
   "mounts": [
     {
@@ -19,26 +19,30 @@
       "path": "/output"
     }
   ],
-  "environment-variables": {},
+  "environment-variables": {
+    "PROJECT": "#PROJECT#",
+    "SESSION_LABEL": "#SESSION_LABEL#",
+    "SESSION_ID": "#SESSION_ID#"
+  },
   "ports": {},
   "inputs": [
     {
       "name": "SESSION_ID",
       "type": "string",
       "required": true,
-      "user-settable": false
+      "select-values": []
     },
     {
       "name": "SESSION_LABEL",
       "type": "string",
       "required": true,
-      "user-settable": false
+      "select-values": []
     },
     {
       "name": "PROJECT",
       "type": "string",
       "required": true,
-      "user-settable": false
+      "select-values": []
     },
     {
       "name": "flags",
@@ -82,45 +86,53 @@
         {
           "name": "session-id",
           "type": "string",
-          "derived-from-wrapper-input": "session",
-          "derived-from-xnat-object-property": "id",
+          "required": true,
           "provides-value-for-command-input": "SESSION_ID",
           "user-settable": false,
-          "required": true
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "id",
+          "multiple": false
         },
         {
           "name": "session-label",
           "type": "string",
-          "derived-from-wrapper-input": "session",
-          "derived-from-xnat-object-property": "label",
+          "required": true,
           "provides-value-for-command-input": "SESSION_LABEL",
           "user-settable": false,
-          "required": true
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "label",
+          "multiple": false
         },
         {
           "name": "project-id",
           "type": "string",
-          "derived-from-wrapper-input": "session",
-          "derived-from-xnat-object-property": "project-id",
+          "required": true,
           "provides-value-for-command-input": "PROJECT",
           "user-settable": false,
-          "required": true
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "project-id",
+          "multiple": false
         }
       ],
       "output-handlers": [
         {
           "name": "assessor",
-          "type": "Assessor",
           "accepts-command-output": "output",
           "via-wrapup-command": "xnatworks/bids-assessor-wrapup:2.5:bids-assessor-wrapup",
-          "as-a-child-of": "session"
+          "as-a-child-of": "session",
+          "type": "Assessor",
+          "tags": []
         },
         {
           "name": "data-resource",
-          "type": "Resource",
           "accepts-command-output": "output",
           "as-a-child-of": "assessor",
-          "label": "DATA"
+          "type": "Resource",
+          "label": "DATA",
+          "tags": []
         }
       ]
     }

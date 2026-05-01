@@ -40,7 +40,7 @@ profiles:
         wrapper_names:
           - "bids-mriqc-session-assessor"
         command_json_path: "containers/bids-demo-pipeline/bids-mriqc-session-assessor.command.json"
-        command_json_sha256: "c171fdc1ed71d812d9d34a94cfefc14237cd57752690e97732035d5b357cc6ae"
+        command_json_sha256: "cc5bef3afa44e913554a1cebbf42ed1d373926acd8241e2cf8933ac59aef1cda"
       - id: "fmriprep_assessor"
         label: "Run fMRIPrep assessor"
         image: "nipreps/fmriprep:25.2.5"
@@ -59,4 +59,3 @@ profiles:
           - "qsiprep-session-assessor"
         command_json_path: "containers/bids-demo-pipeline/qsiprep-session-assessor.command.json"
         command_json_sha256: "2a9fcac3c3e694fd9425511f266fe52c82fb0618cc99c7c4a9d591a1eed901a5"
-
