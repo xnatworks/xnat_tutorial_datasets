@@ -1,0 +1,97 @@
+# Original dataset sources for tutorial walkthroughs.
+#
+# This file is the authoritative manifest of upstream sources for each
+# tutorial dataset. The xnat_tutorial_plugin uses these entries to ingest
+# the right data into a target XNAT and to fall back to mirrored copies
+# in this repo when the upstream is unavailable.
+#
+# Schema per entry:
+#   tutorial:        slug matching the markdown file in tutorials/
+#   title:           human-readable title
+#   modality:        CT, MR, PET, etc.
+#   purpose:         one-line summary of why this dataset is in the tutorial
+#   primary:         upstream source the plugin should try first
+#   fallback:        local-mirror path (raw GitHub) when primary fails
+#   license:         license string from the upstream
+#   citation:        BibTeX-style or URL citation
+#   notes:           any preprocessing or selection notes
+
+datasets:
+
+  - tutorial: 01-dcm2niix
+    title: TCIA QIN-PROSTATE-Repeatability tiny series
+    modality: MR
+    purpose: minimal DICOM series for the simplest possible DICOM->NIfTI demo
+    primary:
+      type: tcia
+      collection: QIN-PROSTATE-Repeatability
+      series: smallest single MR series
+      url: https://www.cancerimagingarchive.net/collection/qin-prostate-repeatability/
+    fallback:
+      path: datasets/xnat-tutorial/tcia_dicom_intro/archive.zip
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/tcia_dicom_intro/archive.zip
+    license: CC-BY-4.0
+    citation: https://doi.org/10.7937/K9/TCIA.2018.MR1CKGND
+
+  - tutorial: 02-monai-bundle-segmentation
+    title: TCIA-CPTAC sarcoma abdomen+pelvis CT
+    modality: CT
+    purpose: full-FOV abdomen+pelvis CT — produces non-empty output for both spleen and wholeBody MONAI bundles
+    primary:
+      type: tcia
+      collection: TCIA-CPTAC-SAR
+      preferred_subject: any with VENOUS ABD/PELVIS series
+      url: https://www.cancerimagingarchive.net/collection/cptac-sar/
+    fallback:
+      path: TBD
+      raw_url: TBD
+      notes: not yet mirrored — too large for raw GitHub; needs release asset or object storage
+    license: TCIA Restricted (data use agreement)
+    citation: https://doi.org/10.7937/k9/tcia.2018.cptac-sar
+
+  - tutorial: 03-totalsegmentator-vs-monai
+    title: same as tutorial 02
+    modality: CT
+    purpose: comparison demo uses the identical scan as tutorial 02
+    primary:
+      type: alias
+      ref: 02-monai-bundle-segmentation
+    fallback:
+      type: alias
+      ref: 02-monai-bundle-segmentation
+
+  - tutorial: 04-rabies-rodent-fmri
+    title: OpenNeuro ds002551 mouse rs-fMRI (BIDS)
+    modality: MR
+    purpose: published BIDS-organized rodent rs-fMRI; works directly with RABIES preprocess
+    primary:
+      type: openneuro
+      accession: ds002551
+      url: https://openneuro.org/datasets/ds002551
+      s3: s3://openneuro.org/ds002551
+    fallback:
+      path: TBD
+      raw_url: TBD
+      notes: per-subject ~200 MB; consider single-subject release asset or external mirror
+    license: CC0
+    citation: https://openneuro.org/datasets/ds002551
+    bids_layout: |
+      ds002551/
+        sub-<id>/
+          ses-<id>/
+            anat/sub-<id>_ses-<id>_T2w.nii.gz
+            func/sub-<id>_ses-<id>_task-rest_bold.nii.gz
+
+  - tutorial: 04-rabies-rodent-fmri-anatomy-only
+    title: TCIA Mouse-Astrocytoma anatomical MRI subset
+    modality: MR
+    purpose: mouse anatomical MRI for sanity-check of brain-extraction / atlas registration steps without full functional series
+    primary:
+      type: tcia
+      collection: Mouse-Astrocytoma
+      url: https://www.cancerimagingarchive.net/collection/mouse-astrocytoma/
+    fallback:
+      path: datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip
+    license: CC-BY-3.0
+    citation: https://doi.org/10.7937/K9/TCIA.2018.WB7N9SE0
