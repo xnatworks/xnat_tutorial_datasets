@@ -1,0 +1,184 @@
+{
+  "name": "qsiprep-assessor",
+  "description": "Runs QSIPrep and creates an assessor with extracted metadata",
+  "version": "1.3",
+  "schema-version": "1.0",
+  "image": "pennlinc/qsiprep:1.1.1",
+  "type": "docker",
+  "command-line": "qsiprep --skip-bids-validation --fs-license-file /Project/fs_license.txt --output-resolution #OUTPUT_RESOLUTION# /input /output participant #ADDITIONAL_PARAMS#",
+  "override-entrypoint": true,
+  "mounts": [
+    {
+      "name": "in",
+      "writable": false,
+      "path": "/input"
+    },
+    {
+      "name": "out",
+      "writable": true,
+      "path": "/output"
+    },
+    {
+      "name": "work",
+      "writable": true,
+      "path": "/work"
+    },
+    {
+      "name": "license-in",
+      "writable": false,
+      "path": "/Project/"
+    }
+  ],
+  "environment-variables": {
+    "SESSION_ID": "#SESSION_ID#",
+    "SESSION_LABEL": "#SESSION_LABEL#",
+    "PROJECT": "#PROJECT#",
+    "OUTPUT_RESOLUTION": "#OUTPUT_RESOLUTION#"
+  },
+  "ports": {},
+  "inputs": [
+    {
+      "name": "SESSION_ID",
+      "type": "string",
+      "required": true,
+      "user-settable": false
+    },
+    {
+      "name": "SESSION_LABEL",
+      "type": "string",
+      "required": true,
+      "user-settable": false
+    },
+    {
+      "name": "PROJECT",
+      "type": "string",
+      "required": true,
+      "user-settable": false
+    },
+    {
+      "name": "OUTPUT_RESOLUTION",
+      "description": "Output voxel resolution in mm (required by QSIPrep). Common values: 1.5, 2, 2.5",
+      "type": "string",
+      "default-value": "1.5",
+      "required": true,
+      "replacement-key": "#OUTPUT_RESOLUTION#",
+      "select-values": []
+    },
+    {
+      "name": "ADDITIONAL_PARAMS",
+      "description": "Additional QSIPrep arguments (e.g. --denoise-method dwidenoise). See https://qsiprep.readthedocs.io/en/1.1.1/usage.html",
+      "type": "string",
+      "default-value": "",
+      "required": false,
+      "replacement-key": "#ADDITIONAL_PARAMS#",
+      "select-values": []
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "description": "QSIPrep output derivatives",
+      "required": true,
+      "mount": "out"
+    }
+  ],
+  "xnat": [
+    {
+      "name": "qsiprep-session-assessor",
+      "description": "Run QSIPrep and create assessor with results",
+      "contexts": [
+        "xnat:imageSessionData"
+      ],
+      "external-inputs": [
+        {
+          "name": "session",
+          "description": "Input session",
+          "type": "Session",
+          "required": true,
+          "provides-files-for-command-mount": "in",
+          "via-setup-command": "xnatworks/xnat2bids-setup:1.7:xnat2bids",
+          "load-children": false
+        }
+      ],
+      "derived-inputs": [
+        {
+          "name": "session-id",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "id",
+          "provides-value-for-command-input": "SESSION_ID",
+          "user-settable": false,
+          "required": true
+        },
+        {
+          "name": "session-label",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "label",
+          "provides-value-for-command-input": "SESSION_LABEL",
+          "user-settable": false,
+          "required": true
+        },
+        {
+          "name": "project-id",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "project-id",
+          "provides-value-for-command-input": "PROJECT",
+          "user-settable": false,
+          "required": true
+        },
+        {
+          "name": "project",
+          "description": "Input project",
+          "type": "Project",
+          "required": true,
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "multiple": false
+        },
+        {
+          "name": "license-resource",
+          "type": "Resource",
+          "matcher": "@.label =~ /LICENSES.*/i",
+          "required": true,
+          "provides-files-for-command-mount": "license-in",
+          "load-children": false,
+          "derived-from-wrapper-input": "project",
+          "multiple": false
+        },
+        {
+          "name": "fs-license-file",
+          "type": "File",
+          "matcher": "@.name =~ /fs_license.*?.txt/",
+          "required": true,
+          "load-children": false,
+          "derived-from-wrapper-input": "license-resource",
+          "multiple": false
+        }
+      ],
+      "output-handlers": [
+        {
+          "name": "assessor",
+          "type": "Assessor",
+          "accepts-command-output": "output",
+          "via-wrapup-command": "xnatworks/bids-assessor-wrapup:2.5:bids-assessor-wrapup",
+          "as-a-child-of": "session"
+        },
+        {
+          "name": "data-resource",
+          "type": "Resource",
+          "accepts-command-output": "output",
+          "as-a-child-of": "assessor",
+          "label": "DATA"
+        }
+      ]
+    }
+  ],
+  "reserve-memory": 14000,
+  "container-labels": {},
+  "generic-resources": {},
+  "ulimits": {},
+  "secrets": [],
+  "visibility": "public"
+}
