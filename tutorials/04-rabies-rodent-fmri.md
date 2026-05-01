@@ -107,7 +107,7 @@ preprocess_outputs/
 
 Plus an HTML QC report at the top of the directory tree.
 
-## Demo strategy (45-min workshop slot)
+## Demo strategy (45-min tutorial slot)
 
 | Minutes | Activity |
 |---|---|
