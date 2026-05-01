@@ -15,6 +15,7 @@ These files are small workshop subsets, not full public datasets.
 | Fallback path | Original source | Credit / license |
 | --- | --- | --- |
 | `datasets/openneuro/ds000102/` | OpenNeuro / OpenfMRI ds000102 Flanker task | Data from OpenfMRI/OpenNeuro accession `ds000102`; license reported by dataset metadata as PDDL |
+| `datasets/openneuro/ds002551-metadata/` | OpenNeuro ds002551 Mouse_rest_awake | Non-imaging BIDS participant metadata from OpenNeuro accession `ds002551`; license reported by dataset metadata as CC0 |
 | `datasets/niivue-demo-images/` | NiiVue demo image repository | Sample NIfTI images from `niivue/niivue-demo-images`, forked from `neurolabusc/niivue-images`; repository license is BSD-2-Clause, with per-image source/license notes in the upstream README |
 | `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip` | TCIA QIN-PROSTATE-Repeatability | The Cancer Imaging Archive, QIN-PROSTATE-Repeatability collection; Creative Commons Attribution 4.0 International |
 | `datasets/xnat-tutorial/tcia_collection_smallest/archive.zip` | TCIA QIN-PROSTATE-Repeatability | Same tiny series as `tcia_dicom_intro`, used as the fallback for collection-mode selection |
@@ -62,6 +63,37 @@ Tutorial use:
 - The subset is intentionally one subject and one functional run so workshop
   imports finish quickly.
 
+## OpenNeuro ds002551 Rodent Metadata Subset
+
+Original source:
+
+- OpenNeuro dataset page: `https://openneuro.org/datasets/ds002551`
+- S3 source used for the mirrored files:
+  `https://s3.amazonaws.com/openneuro.org/ds002551`
+
+Credit:
+
+- Dataset metadata reports the dataset name `Mouse_rest_awake`.
+- `dataset_description.json` lists the authors Norio Takata, Nobuhiko Sato,
+  Yuji Komaki, Hideyuki Okano, and Kenji F. Tanaka.
+- License in `dataset_description.json`: `CC0`.
+- The dataset DOI is `10.18112/openneuro.ds002551.v1.0.1`.
+
+Mirrored non-imaging files:
+
+- `dataset_description.json`
+- `participants.tsv`
+- `participants.json`
+
+Tutorial use:
+
+- Used by the dynamic data type walkthrough as a tiny preclinical metadata
+  table.
+- The fields describe mouse participant/acquisition metadata: sex, MRI field
+  strength, coil, breathing condition, and sedation.
+- This gives a non-imaging example that pairs with the RABIES rodent fMRI
+  tutorial without requiring the full imaging dataset.
+
 ## NiiVue Demo Image Samples
 
 Original source:
@@ -97,8 +129,9 @@ Tutorial use:
 
 - Used by viewer/workbench walkthroughs that need immediately available NIfTI
   samples.
-- Imported by the tutorial plugin as a project-level `NIFTI` resource with
-  tutorial provenance metadata.
+- Imported by the tutorial plugin into the same subject/session/scan layout as
+  the demo02 `NiiVue_Samples` project, with scan-level `NIFTI` resources and
+  project-level tutorial provenance metadata.
 - The mirrored subset is 144,824,864 bytes across 68 files.
 
 ## TCIA QIN-PROSTATE-Repeatability DICOM Subset
