@@ -1,0 +1,62 @@
+# Curated tutorial container command profiles.
+#
+# These entries are consumed by xnat_tutorial_plugin. Keep images public,
+# Docker Hub hosted, and pinned to non-latest tags.
+
+profiles:
+  bids_demo_pipeline:
+    label: "BIDS demo pipeline"
+    orchestration_name: "Tutorial BIDS Demo Pipeline"
+    dockerhub_required: true
+    pinned_tag_required: true
+    required_project_resources:
+      - resource: "LICENSES"
+        file: "fs_license.txt"
+        label: "FreeSurfer license"
+    commands:
+      - id: "bids_mapping_generator"
+        label: "Generate BIDS mapping"
+        image: "xnatworks/bids-mapping-generator:1.7.0"
+        command_names:
+          - "bids-mapping-generator"
+        wrapper_names:
+          - "bids-mapping-generator-session"
+        command_json_path: "containers/bids-demo-pipeline/bids-mapping-generator-session.command.json"
+        command_json_sha256: "cbae1aefa2c046fd4703125977108dd0669791eef64a009002ced146ebb032c5"
+      - id: "dcm2bids_session"
+        label: "Convert DICOM to BIDS/NIfTI"
+        image: "xnatworks/dcm2bids-session:2.14"
+        command_names:
+          - "dcm2bids-session-v16"
+        wrapper_names:
+          - "dcm2bids-session-v16"
+        command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v16.command.json"
+        command_json_sha256: "bd29790517abbf46621ef8ef3eb1fb7907fffaf12fa7abefd2f2a0ff82d60e1e"
+      - id: "bids_mriqc_assessor"
+        label: "Run MRIQC assessor"
+        image: "nipreps/mriqc:24.0.2"
+        command_names:
+          - "bids-mriqc-assessor"
+        wrapper_names:
+          - "bids-mriqc-session-assessor"
+        command_json_path: "containers/bids-demo-pipeline/bids-mriqc-session-assessor.command.json"
+        command_json_sha256: "c171fdc1ed71d812d9d34a94cfefc14237cd57752690e97732035d5b357cc6ae"
+      - id: "fmriprep_assessor"
+        label: "Run fMRIPrep assessor"
+        image: "nipreps/fmriprep:25.2.5"
+        command_names:
+          - "fmriprep-assessor"
+        wrapper_names:
+          - "fmriprep-session-assessor"
+        command_json_path: "containers/bids-demo-pipeline/fmriprep-session-assessor.command.json"
+        command_json_sha256: "abd5ef74ba08f6115e04639e3a2cd02725e1c818660f4f872b64c520aac11a04"
+      - id: "qsiprep_assessor"
+        label: "Run QSIPrep assessor"
+        image: "pennlinc/qsiprep:1.1.1"
+        command_names:
+          - "qsiprep-assessor"
+        wrapper_names:
+          - "qsiprep-session-assessor"
+        command_json_path: "containers/bids-demo-pipeline/qsiprep-session-assessor.command.json"
+        command_json_sha256: "2a9fcac3c3e694fd9425511f266fe52c82fb0618cc99c7c4a9d591a1eed901a5"
+

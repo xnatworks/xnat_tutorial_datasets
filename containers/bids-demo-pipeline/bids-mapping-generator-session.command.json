@@ -1,0 +1,130 @@
+{
+  "name": "bids-mapping-generator",
+  "description": "Generate a draft BIDS mapping from XNAT project scan inventory. Inventories all scans, auto-matches series descriptions to BIDS names, and saves as a project resource. Supports session-level mode for incremental mapping with optional DICOM header reading.",
+  "version": "1.7.0",
+  "schema-version": "1.0",
+  "image": "xnatworks/bids-mapping-generator:1.7.0",
+  "type": "docker",
+  "command-line": "python /src/generate_bidsmap.py --project #PROJECT_ID# --host $XNAT_HOST --user $XNAT_USER --pass $XNAT_PASS --output /output --format dcm2bids #SAVE_CONFIG# #SESSION_ID# #APPLY_SUGGESTIONS# #SESSION_DIR#",
+  "override-entrypoint": true,
+  "mounts": [
+    {
+      "name": "output",
+      "writable": true,
+      "path": "/output"
+    },
+    {
+      "name": "input",
+      "writable": false,
+      "path": "/input"
+    }
+  ],
+  "environment-variables": {},
+  "ports": {},
+  "inputs": [
+    {
+      "name": "project-id",
+      "description": "XNAT Project ID",
+      "type": "string",
+      "required": true,
+      "replacement-key": "#PROJECT_ID#"
+    },
+    {
+      "name": "session-id",
+      "description": "Single session ID for session-level mode (processes one session, merges into project bidsmap)",
+      "type": "string",
+      "required": false,
+      "default-value": "",
+      "replacement-key": "#SESSION_ID#",
+      "command-line-flag": "--session-id"
+    },
+    {
+      "name": "session-dir",
+      "description": "Path to session archive directory for DICOM header reading",
+      "type": "string",
+      "required": false,
+      "default-value": "",
+      "replacement-key": "#SESSION_DIR#",
+      "command-line-flag": "--session-dir"
+    },
+    {
+      "name": "save-config",
+      "description": "Save bidsmap to XNAT config service (default: true)",
+      "type": "string",
+      "required": false,
+      "default-value": "true",
+      "replacement-key": "#SAVE_CONFIG#",
+      "command-line-flag": "--save-config"
+    },
+    {
+      "name": "apply-suggestions",
+      "description": "Apply suggested BIDS names for unmatched series (default: false). Review the report first, then re-run with this enabled.",
+      "type": "string",
+      "required": false,
+      "default-value": "false",
+      "replacement-key": "#APPLY_SUGGESTIONS#",
+      "command-line-flag": "--apply-suggestions"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "bidsmap-output",
+      "description": "Generated BIDS mapping files (bidsmap.json, report.txt, report.html, summary.json)",
+      "mount": "output",
+      "path": ""
+    }
+  ],
+  "xnat": [
+    {
+      "name": "bids-mapping-generator-session",
+      "description": "Run xnatworks/bids-mapping-generator:1.7.0",
+      "contexts": [
+        "xnat:imageSessionData"
+      ],
+      "external-inputs": [
+        {
+          "name": "session",
+          "description": "Session to generate BIDS mapping for",
+          "type": "Session",
+          "required": true,
+          "provides-files-for-command-mount": "input"
+        }
+      ],
+      "derived-inputs": [
+        {
+          "name": "session-project-id",
+          "description": "Project ID from the session",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "project-id",
+          "provides-value-for-command-input": "project-id"
+        },
+        {
+          "name": "session-id-value",
+          "description": "Session ID",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "id",
+          "provides-value-for-command-input": "session-id"
+        },
+        {
+          "name": "session-dir-value",
+          "description": "Session archive directory path",
+          "type": "string",
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "directory",
+          "provides-value-for-command-input": "session-dir"
+        }
+      ],
+      "output-handlers": [
+        {
+          "name": "bidsmap-output-handler",
+          "accepts-command-output": "bidsmap-output",
+          "type": "Resource",
+          "as-a-child-of": "session",
+          "label": "BIDS_bidsmap"
+        }
+      ]
+    }
+  ]
+}
