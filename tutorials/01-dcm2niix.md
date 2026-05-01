@@ -18,7 +18,7 @@ XNAT Container Service flow.
 ## Dataset
 
 See [`sources.yml`](sources.yml) entry `01-dcm2niix` for the upstream
-reference and license. The fallback workshop subset is mirrored in this
+reference and license. The fallback tutorial subset is mirrored in this
 repo under `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip`.
 
 ## Setup
