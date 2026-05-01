@@ -1,38 +1,44 @@
-# XNAT Container Tutorials
+# XNAT Tutorial Exercises
 
-Walkthrough tutorials that pair each demo container with a downloadable
-sample dataset from this repository. Designed for live workshops
-(foundingGIDE 2026, Heidelberg) and self-paced learning.
+Walkthrough tutorials that pair XNAT features, containers, and downloadable
+sample datasets from this repository. Designed for live workshops and
+self-paced learning.
 
 ## Tutorial index
 
-| # | Tutorial | Container | Walltime |
-|---|---|---|---|
-| 01 | [DICOM → NIfTI conversion](01-dcm2niix.md) | `xnatworks/dcm2niix:2.0` | < 1 min |
-| 02 | [MONAI Bundle segmentation](02-monai-bundle-segmentation.md) | `xnatworks/monai-bundle-nifti:0.3.0` | 5–15 s per scan |
-| 03 | [TotalSegmentator vs MONAI comparison](03-totalsegmentator-vs-monai.md) | `wasserth/totalsegmentator` + `xnatworks/monai-bundle-nifti` | ~5 min total |
-| 04 | [RABIES — rodent fMRI preprocess](04-rabies-rodent-fmri.md) | `ghcr.io/cobralab/rabies:0.6.0` | 10–60 min |
+| # | Tutorial | Category | Dataset / container | Walltime |
+|---|---|---|---|---|
+| 01 | [DICOM → NIfTI conversion](01-dcm2niix.md) | Container basics | `tcia_dicom_intro` + `xnatworks/dcm2niix:2.0` | < 1 min |
+| 02 | [MONAI Bundle segmentation](02-monai-bundle-segmentation.md) | AI segmentation | CT abdomen/pelvis + `xnatworks/monai-bundle-nifti:0.3.0` | 5–15 s per scan |
+| 03 | [TotalSegmentator vs MONAI comparison](03-totalsegmentator-vs-monai.md) | AI comparison | same CT as 02 + TotalSegmentator/MONAI | ~5 min total |
+| 04 | [RABIES — rodent fMRI preprocess](04-rabies-rodent-fmri.md) | Preclinical BIDS | OpenNeuro `ds002551` + `ghcr.io/cobralab/rabies:0.6.0` | 10–60 min |
+| 05 | [Dynamic Data Type and Custom Form](05-dynamic-data-type.md) | XNAT administration | `tcia_dicom_intro` sample project | 10–15 min |
+| 06 | [Preclinical Metadata as a Dynamic Data Type](06-preclinical-metadata-datatype.md) | Metadata / preclinical | OpenNeuro `ds002551` `participants.tsv` | 10–15 min |
 
 Datasets per tutorial — upstream sources, licenses, and local-mirror
 fallbacks — are listed in [`sources.yml`](sources.yml).
 
-Each tutorial is self-contained — pre-reqs, dataset download, step-by-step
-launch via XNAT UI **and** REST, expected outputs, what to inspect.
+Each tutorial is self-contained — pre-reqs, dataset download when needed,
+step-by-step launch or admin workflow, expected outputs, and what to inspect.
 
 ## Running on any XNAT
 
-All tutorials assume an XNAT instance with Container Service installed and
-Docker access for the running user. They reference `${XNAT_HOST}`,
-`${XNAT_USER}`, `${XNAT_PASS}`, `${PROJECT}`, `${SESSION}`, `${SCAN}`, and
-`${WRAPPER_ID}` as placeholders — set them in your shell or substitute
-inline.
+Container tutorials assume an XNAT instance with Container Service installed
+and Docker access for the running user. Admin/UI tutorials require the named
+XNAT feature and a site administrator account. REST examples reference
+`${XNAT_HOST}`, `${XNAT_USER}`, `${XNAT_PASS}`, `${PROJECT}`, `${SESSION}`,
+`${SCAN}`, and `${WRAPPER_ID}` as placeholders — set them in your shell or
+substitute inline.
 
 ## Common preconditions
 
-1. Container Service plugin enabled
-2. Docker host with GPU support (CUDA 12+ recommended for MONAI/RABIES)
-3. The relevant container command registered + enabled on the project. Each
-   tutorial shows the registration `curl` for its container.
+1. XNAT 1.10 or newer for the full workshop path.
+2. Tutorial plugin installed when you want one-click sample data loading.
+3. Container Service plugin enabled for container exercises.
+4. Docker host with GPU support where needed (CUDA 12+ recommended for
+   MONAI/RABIES).
+5. The relevant container command registered + enabled on the project. Each
+   container tutorial shows the registration `curl` for its container.
 
 ## Dataset download
 
