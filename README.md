@@ -15,6 +15,7 @@ These files are small workshop subsets, not full public datasets.
 | Fallback path | Original source | Credit / license |
 | --- | --- | --- |
 | `datasets/openneuro/ds000102/` | OpenNeuro / OpenfMRI ds000102 Flanker task | Data from OpenfMRI/OpenNeuro accession `ds000102`; license reported by dataset metadata as PDDL |
+| `datasets/niivue-demo-images/` | NiiVue demo image repository | Sample NIfTI images from `niivue/niivue-demo-images`, forked from `neurolabusc/niivue-images`; repository license is BSD-2-Clause, with per-image source/license notes in the upstream README |
 | `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip` | TCIA QIN-PROSTATE-Repeatability | The Cancer Imaging Archive, QIN-PROSTATE-Repeatability collection; Creative Commons Attribution 4.0 International |
 | `datasets/xnat-tutorial/tcia_collection_smallest/archive.zip` | TCIA QIN-PROSTATE-Repeatability | Same tiny series as `tcia_dicom_intro`, used as the fallback for collection-mode selection |
 | `datasets/xnat-tutorial/tcia_pseudo_phi_deid/archive.zip` | TCIA Pseudo-PHI-DICOM-Data | The Cancer Imaging Archive, Pseudo-PHI-DICOM-Data collection; Creative Commons Attribution 4.0 International |
@@ -60,6 +61,45 @@ Tutorial use:
 - Imported into XNAT as a project-level `BIDS` resource.
 - The subset is intentionally one subject and one functional run so workshop
   imports finish quickly.
+
+## NiiVue Demo Image Samples
+
+Original source:
+
+- NiiVue demo images: `https://github.com/niivue/niivue-demo-images`
+- The repository is a fork of `https://github.com/neurolabusc/niivue-images`
+- Public raw file base used by the tutorial plugin:
+  `https://raw.githubusercontent.com/niivue/niivue-demo-images/main`
+
+Credit:
+
+- The upstream repository describes these as intentionally low-resolution
+  sample NIfTI images for demonstrating and validating NiiVue.
+- Keep the mirrored upstream `README.md`, folder README files, JSON sidecars,
+  and `LICENSE` with any redistribution. The root repository license is
+  BSD-2-Clause, but the README includes per-image provenance and licenses,
+  including CC BY-NC 4.0 for several MR/fMRI and animal examples.
+- The demo02 `NiiVue_Samples` project appears to have been assembled from this
+  repository. Its project description says MIT, but the upstream repository
+  currently advertises BSD-2-Clause plus per-image source/license notes.
+
+Mirrored files:
+
+- Root sample volumes: CT, MR, MNI template, fMRI, animal, and Visible Human
+  NIfTI files used by the demo02 `NiiVue_Samples` project.
+- Atlas/demo folders: `Allen`, `BigBrain`, `CIT168`, `Cerebellum`, `PD25`,
+  `Thalamus`, and `Juelich31`.
+- Registration examples in `register/`.
+- Upstream metadata: root `README.md`, `LICENSE`, `manifest.json`, folder
+  README files, label/color JSON files, and `COPYING_EXT.txt`.
+
+Tutorial use:
+
+- Used by viewer/workbench walkthroughs that need immediately available NIfTI
+  samples.
+- Imported by the tutorial plugin as a project-level `NIFTI` resource with
+  tutorial provenance metadata.
+- The mirrored subset is 144,824,864 bytes across 68 files.
 
 ## TCIA QIN-PROSTATE-Repeatability DICOM Subset
 

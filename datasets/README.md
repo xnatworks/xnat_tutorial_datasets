@@ -6,6 +6,8 @@ the configured fallback base URL.
 Examples:
 
 - `datasets/openneuro/ds000102/dataset_description.json`
+- `datasets/niivue-demo-images/mni152.nii.gz`
+- `datasets/niivue-demo-images/register/T1_head.nii.gz`
 - `datasets/grouplevel/msd/Task04_Hippocampus.tar`
 - `datasets/grouplevel/sources.yml`
 - `datasets/xnat-tutorial/tcia_collection_smallest/archive.zip`
