@@ -32,6 +32,15 @@ profiles:
           - "dcm2bids-session-v16"
         command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v16.command.json"
         command_json_sha256: "bd29790517abbf46621ef8ef3eb1fb7907fffaf12fa7abefd2f2a0ff82d60e1e"
+      - id: "bids_materialize"
+        label: "Materialize BIDS resource"
+        image: "busybox:1.37.0"
+        command_names:
+          - "bids-materialize"
+        wrapper_names:
+          - "bids-materialize-session"
+        command_json_path: "containers/bids-demo-pipeline/bids-materialize-session.command.json"
+        command_json_sha256: "9316612698344e0da10a598ef2541eec859ebac4f643f0f3acb14ca15fcf5666"
       - id: "bids_mriqc_assessor"
         label: "Run MRIQC assessor"
         image: "nipreps/mriqc:24.0.2"

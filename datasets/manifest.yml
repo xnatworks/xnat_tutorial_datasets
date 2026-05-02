@@ -71,6 +71,31 @@ datasets:
       tutorial.
     - Loads source DICOM into XNAT; use prepared HeuDiConv output or a tested container
       command when demonstrating conversion to BIDS.
+  bidscoin_dicom_to_bids:
+    label: BIDScoin tutorial DICOM subset for DICOM-to-BIDS
+    format: DICOM
+    default_project_id: XNAT_TUTORIAL_BIDSCOIN
+    loader_type: tutorial
+    license_label: BIDScoin tutorial data; cite BIDScoin and its tutorial materials
+    source_page: https://bidscoin.readthedocs.io/en/stable/tutorial.html
+    fallback_archive_url: datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
+    default_download_mode: archive_zip
+    default_subset_policy: bidscoin-sub-001-dicom
+    expected_source_bytes: 170844248
+    expected_subject_count: 1
+    expected_scan_count: 11
+    default_limits:
+      subjects: 1
+      sessions: 1
+      series: 11
+      max_dicom_files: 712
+    notes:
+    - Curated from the public BIDScoin tutorial archive, keeping raw DICOM for
+      `sub-001` only so the dataset remains small enough for live workshops.
+    - Includes anatomical, functional, SBRef, and fieldmap series suitable for a
+      practical DICOM-to-BIDS walkthrough.
+    - Local validation showed all image series convert with dcm2niix; the
+      behavioral sidecar folder is preserved as non-DICOM tutorial metadata.
   openneuro_flanker_bids:
     label: OpenNeuro ds000102 Flanker BIDS subset
     format: BIDS/NIfTI

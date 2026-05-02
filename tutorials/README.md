@@ -14,6 +14,14 @@ both supported.
 | 04 | [RABIES — rodent fMRI preprocess](04-rabies-rodent-fmri.md) | Preclinical BIDS | OpenNeuro `ds002551` + `ghcr.io/cobralab/rabies:0.6.0` | 10–60 min |
 | 05 | [Dynamic Data Type and Custom Form](05-dynamic-data-type.md) | XNAT administration | `tcia_dicom_intro` sample project | 10–15 min |
 | 06 | [Preclinical Metadata as a Dynamic Data Type](06-preclinical-metadata-datatype.md) | Metadata / preclinical | OpenNeuro `ds002551` `participants.tsv` | 10–15 min |
+| 07 | [Complete BIDS workflow](07-complete-bids-walkthrough.md) | DICOM to BIDS to BIDS app | `bidscoin_dicom_to_bids` + BIDS demo pipeline | 20–45 min |
+
+## Simple XNAT walkthroughs
+
+The [simple walkthroughs](simple-walkthroughs.md) are user-facing
+instructions for short XNAT lessons. Each one recommends a dataset from
+this repository and gives concrete UI steps, expected results, and a
+verification check.
 
 ## Dataset walkthroughs
 
@@ -22,6 +30,13 @@ One per dataset shipped by the
 manifest. Focuses on **why the data matters** first, XNAT plumbing
 second. See [`datasets/README.md`](datasets/README.md) for the index and
 cross-cutting tutorial arcs.
+
+For workshop planning, see the
+[pick-and-mix tutorial catalog](pick-and-mix.md). It lists simple
+tutorial topics and the datasets each tutorial should recommend, so the
+same dataset can be reused across beginner, admin, BIDS, preclinical, or
+dynamic datatype sessions. It also includes a practical use-case map that
+starts from downloaded sample data and follows wiki-backed XNAT workflows.
 
 Per-dataset upstream sources, licenses, and local-mirror fallbacks are
 listed in [`sources.yml`](sources.yml).
@@ -65,7 +80,8 @@ etc.) — also documented in the [main README](../README.md).
 - Code blocks use `bash` — copy-paste runnable
 - `${XNAT_HOST}` and `${XNAT_USER}:${XNAT_PASS}` are placeholders — set them
   in your shell first
-- Screenshots / GIFs in `images/` per tutorial directory (added later)
+- Screenshots link to public wiki.xnat.org pages when the walkthrough follows
+  a wiki workflow
 - Each tutorial ends with **Expected output** + **Verify** sections so a
   learner can confirm a successful run
 

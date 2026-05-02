@@ -21,6 +21,7 @@ These files are small workshop subsets, not full public datasets.
 | `datasets/xnat-tutorial/tcia_collection_smallest/archive.zip` | TCIA QIN-PROSTATE-Repeatability | Same tiny series as `tcia_dicom_intro`, used as the fallback for collection-mode selection |
 | `datasets/xnat-tutorial/tcia_pseudo_phi_deid/archive.zip` | TCIA Pseudo-PHI-DICOM-Data | The Cancer Imaging Archive, Pseudo-PHI-DICOM-Data collection; Creative Commons Attribution 4.0 International |
 | `datasets/xnat-tutorial/reproin_dicom_to_bids/archive.zip` | HeuDiConv/ReproIn example DICOM phantom | University of Arizona / ReproIn / HeuDiConv teaching dataset; cite HeuDiConv and ReproIn materials |
+| `datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip` | BIDScoin tutorial DICOM data | Curated `sub-001` raw DICOM subset from the public BIDScoin tutorial data; cite BIDScoin and its tutorial materials |
 | `datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip` | TCIA Mouse-Astrocytoma | The Cancer Imaging Archive, Mouse-Astrocytoma collection; Creative Commons Attribution 3.0 Unported |
 | `datasets/grouplevel/msd/Task04_Hippocampus.tar` | Medical Segmentation Decathlon / MONAI mirror | MSD Task04 Hippocampus; CC-BY-SA 4.0 |
 
@@ -224,6 +225,41 @@ Tutorial use:
 - The XNAT tutorial plugin loads the source DICOM into XNAT; BIDS conversion
   should be shown with a tested HeuDiConv command/container or a prepared
   output resource.
+
+## BIDScoin DICOM-To-BIDS Subset
+
+Original source:
+
+- BIDScoin tutorial:
+  `https://bidscoin.readthedocs.io/en/stable/tutorial.html`
+- Public tutorial data download:
+  `https://surfdrive.surf.nl/files/index.php/s/HTxdUbykBZm2cYM/download`
+
+Credit:
+
+- This subset is curated from the public BIDScoin tutorial dataset.
+- Cite BIDScoin and the BIDScoin tutorial materials in workshop or derived
+  documentation.
+
+Mirrored files:
+
+- `datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip`
+
+Subset contents:
+
+- `bidscointutorial/raw/sub-001`
+- 1 subject
+- 1 session
+- 11 DICOM series
+- 712 DICOM files
+- 51 MB ZIP archive
+
+Tutorial use:
+
+- Primary source data for the complete DICOM-to-BIDS walkthrough.
+- Includes anatomical, functional, SBRef, and fieldmap series.
+- Local validation showed all image series convert with dcm2niix; the
+  behavioral sidecar folder is preserved as non-DICOM tutorial metadata.
 
 ## TCIA Mouse-Astrocytoma DICOM Subset
 
