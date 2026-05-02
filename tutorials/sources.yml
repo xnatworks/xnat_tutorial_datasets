@@ -128,3 +128,18 @@ datasets:
       raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/openneuro/ds002551-metadata
     license: CC0
     citation: https://openneuro.org/datasets/ds002551
+
+  - tutorial: 07-complete-bids-walkthrough
+    title: BIDScoin tutorial DICOM subset
+    modality: MR
+    purpose: real human DICOM source data for a complete DICOM-to-BIDS workflow
+    primary:
+      type: bidscoin
+      url: https://bidscoin.readthedocs.io/en/stable/tutorial.html
+      archive_url: https://surfdrive.surf.nl/files/index.php/s/HTxdUbykBZm2cYM/download
+      subset: bidscointutorial/raw/sub-001
+    fallback:
+      path: datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
+    license: BIDScoin tutorial data; cite BIDScoin and its tutorial materials
+    citation: https://bidscoin.readthedocs.io/en/stable/tutorial.html
