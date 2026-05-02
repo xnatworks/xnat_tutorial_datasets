@@ -52,6 +52,23 @@ group.
   preprocessable and the project resolves as a BIDS dataset for
   group-level work
 
+## Beginner checkpoints
+
+What this dataset teaches: group analysis depends on consistent single-subject
+inputs plus a project-level model, not one isolated scan.
+
+What to look for in XNAT: open the project subject list, then one subject's
+session, and then return to project resources for group-level files such as a
+model JSON.
+
+How to know import worked: the project has multiple subjects with similar T1w
+and BOLD resources. A group tutorial should not proceed if only one subject was
+created.
+
+What to check first if it does not: inspect the group-level loader result and
+project resources. If subjects are missing, fix import before launching FitLins
+or discussing group statistics.
+
 ## Walkthrough
 
 1. Show the project's subject list — explain why "1 dataset, many

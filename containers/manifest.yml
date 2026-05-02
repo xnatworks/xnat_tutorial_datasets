@@ -16,22 +16,22 @@ profiles:
     commands:
       - id: "bids_mapping_generator"
         label: "Generate BIDS mapping"
-        image: "xnatworks/bids-mapping-generator:1.7.0"
+        image: "xnatworks/bids-mapping-generator:1.7.4"
         command_names:
           - "bids-mapping-generator"
         wrapper_names:
           - "bids-mapping-generator-session"
         command_json_path: "containers/bids-demo-pipeline/bids-mapping-generator-session.command.json"
-        command_json_sha256: "cbae1aefa2c046fd4703125977108dd0669791eef64a009002ced146ebb032c5"
+        command_json_sha256: "2cd43f3fc3db7f9126755524aa9adb1bdbd758de31239309fa7ada7a4f02e7e0"
       - id: "dcm2bids_session"
         label: "Convert DICOM to BIDS/NIfTI"
-        image: "xnatworks/dcm2bids-session:2.14"
+        image: "xnatworks/dcm2bids-session:2.17"
         command_names:
-          - "dcm2bids-session-v16"
+          - "dcm2bids-session-v17"
         wrapper_names:
-          - "dcm2bids-session-v16"
-        command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v16.command.json"
-        command_json_sha256: "bd29790517abbf46621ef8ef3eb1fb7907fffaf12fa7abefd2f2a0ff82d60e1e"
+          - "dcm2bids-session-v17"
+        command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v17.command.json"
+        command_json_sha256: "5b24653ebd5063ab06227d6ee926dc6f930871bc804dc9055ef0313873d3ff64"
       - id: "bids_materialize"
         label: "Materialize BIDS resource"
         image: "busybox:1.37.0"
@@ -41,6 +41,15 @@ profiles:
           - "bids-materialize-session"
         command_json_path: "containers/bids-demo-pipeline/bids-materialize-session.command.json"
         command_json_sha256: "9316612698344e0da10a598ef2541eec859ebac4f643f0f3acb14ca15fcf5666"
+      - id: "bids_validator"
+        label: "Validate BIDS dataset"
+        image: "bids/validator:2.5.6"
+        command_names:
+          - "bids-validator-v2"
+        wrapper_names:
+          - "bids-validator-v2-session"
+        command_json_path: "containers/bids-demo-pipeline/bids-validator-v2-session-assessor.command.json"
+        command_json_sha256: "c771f528b0413d1154ab6be2146ae86711e09f15cd690d48d3876d4d440d43b9"
       - id: "bids_mriqc_assessor"
         label: "Run MRIQC assessor"
         image: "nipreps/mriqc:24.0.2"

@@ -1,4 +1,4 @@
-# Tutorial 04 — RABIES rodent fMRI preprocessing
+# Tutorial 07 — RABIES rodent fMRI preprocessing
 
 The preclinical anchor: a published, BIDS-driven preprocessing pipeline
 purpose-built for **rodent** fMRI/sMRI. Distinct from the human-derived
@@ -27,9 +27,9 @@ priors, and motion parameters tuned for the rodent brain.
 
 See [`sources.yml`](sources.yml) entries:
 
-- `04-rabies-rodent-fmri` — full BIDS rodent rs-fMRI (anatomy + functional)
+- `07-rabies-rodent-fmri` — full BIDS rodent rs-fMRI (anatomy + functional)
   for an end-to-end demo.
-- `04-rabies-rodent-fmri-anatomy-only` — mouse anatomical-only mirror;
+- `07-rabies-rodent-fmri-anatomy-only` — mouse anatomical-only mirror;
   use as a sanity check for brain extraction / atlas registration.
 
 ## Expected BIDS layout
@@ -46,9 +46,28 @@ ${BIDS_ROOT}/
 
 Each NIfTI needs a sidecar `*.json` with at minimum `RepetitionTime`.
 
-XNAT BIDS pipelines (`bids-tree-builder`, `dcm2bids-session-v16`)
+XNAT BIDS pipelines (`bids-tree-builder`, `dcm2bids-session-v17`)
 generate this structure from raw scans — run them first if a session
 doesn't yet have a BIDS resource.
+
+## Beginner Guidance
+
+What this tutorial does: shows that a preclinical BIDS app can run from XNAT
+when the session already has a valid BIDS resource. RABIES is not launched
+directly on raw scan folders; it consumes the BIDS directory tree.
+
+What to look for before launch: the session has a `BIDS` resource with
+`sub-*` folders, an anatomical file, a functional BOLD file, and JSON sidecars
+with timing metadata such as `RepetitionTime`.
+
+How to know it worked: the command reaches `Complete` and the session gains a
+`RABIES_PREPROCESS` resource with motion, common-space, confound, and QC/report
+outputs.
+
+What to check first if it fails: open command history and check whether failure
+happened during BIDS input staging or during RABIES itself. If staging failed,
+inspect the session's `BIDS` resource first; if RABIES failed, inspect the
+RABIES stderr and confirm required anatomical/functional files exist.
 
 ## XNAT setup
 
@@ -76,6 +95,8 @@ doesn't yet have a BIDS resource.
 2. Click **Run Containers** at the session level → **RABIES preprocess (BIDS resource)**.
 3. Pick BIDS resource, set TR, set `fast_commonspace=true` for live demo.
 4. Click **Run** — outputs land as a `RABIES_PREPROCESS` resource.
+5. Open command history and wait for `Complete`.
+6. Return to the session resources and open `RABIES_PREPROCESS`.
 
 ## Run via REST
 
@@ -106,6 +127,13 @@ preprocess_outputs/
 ```
 
 Plus an HTML QC report at the top of the directory tree.
+
+## Verify
+
+Open the HTML QC report and one motion/confound output. The report should
+correspond to the subject/session you launched, and the output folder names
+should match the RABIES stage. If the output resource is present but sparse,
+read stderr before assuming the biological result is meaningful.
 
 ## Demo strategy (45-min tutorial slot)
 

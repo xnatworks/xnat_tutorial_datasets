@@ -45,6 +45,21 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - Project `XNAT_TUTORIAL_DEID`
 - 1 subject, 1 CT scan, 2 DICOM files
 
+## Beginner checkpoints
+
+What this dataset teaches: DICOM headers can contain sensitive values, and
+de-identification should be checked against real header fields.
+
+What to look for in XNAT: open the CT scan, then inspect the `DICOM` resource
+and a DICOM header/tag view.
+
+How to know import worked: the project has one CT scan with two DICOM files,
+and the header contains pseudo-PHI-shaped fields intentionally placed for the
+exercise.
+
+What to check first if it does not: confirm the scan has a `DICOM` resource and
+that you are looking at the source import, not a post-anonymization copy.
+
 ## Walkthrough
 
 1. **Look at the headers as imported** — XNAT scan page → DICOM Headers.

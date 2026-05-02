@@ -49,6 +49,21 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - The label resource carries the ground-truth segmentation (the part
   that distinguishes a *training* dataset from a *test* one)
 
+## Beginner checkpoints
+
+What this dataset teaches: segmentation training data pairs a source image
+with a label or mask, and both need to stay traceable inside XNAT.
+
+What to look for in XNAT: open one subject/session and find both the source
+image resource and the label/segmentation resource.
+
+How to know import worked: each tutorial subject has a T1w image and matching
+label NIfTI. The label should be inspectable as a mask or overlay.
+
+What to check first if it does not: confirm the group-level loader completed
+and that you are not looking only at the source archive files. If labels are
+missing, do not start training or inference yet.
+
 ## Walkthrough
 
 1. Inspect a session: T1w image + matching label NIfTI overlaid in

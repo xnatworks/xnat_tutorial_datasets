@@ -24,7 +24,7 @@ workflow, and ends with an inspectable result in XNAT.
 | Load DICOM and verify XNAT's project/subject/session/scan hierarchy. | `tcia_dicom_intro` | Upload, prearchive, archive, and data model. | [DICOM Import And Archive](simple-walkthroughs.md#dicom-import-and-archive) |
 | Check DICOM headers and de-identification risk. | `tcia_pseudo_phi_deid` | DICOM header review and anonymization concepts. | [DICOM Headers](simple-walkthroughs.md#dicom-headers) |
 | Convert DICOM to NIfTI and inspect derived resources. | `tcia_dicom_intro`, `tcia_mouse_astrocytoma_mri` | Container launch and command history. | [DICOM To NIfTI](simple-walkthroughs.md#dicom-to-nifti) |
-| Walk from DICOM import through BIDS conversion and MRIQC outputs. | `bidscoin_dicom_to_bids`, `reproin_dicom_to_bids` | Setup commands, DICOM-to-BIDS conversion, and command history. | [Complete BIDS workflow](07-complete-bids-walkthrough.md) |
+| Walk from DICOM import through BIDS conversion and MRIQC outputs. | `bidscoin_dicom_to_bids`, `reproin_dicom_to_bids` | Setup commands, DICOM-to-BIDS conversion, and command history. | [Complete BIDS workflow](06-complete-bids-walkthrough.md) |
 | Teach BIDS layout using real participants, sidecars, events, and NIfTI files. | `openneuro_flanker_bids` | Resource storage and container workflow. | [BIDS Layout](simple-walkthroughs.md#bids-layout) |
 | Run a processing command and review outputs as assessors/resources. | `openneuro_flanker_bids`, `reproin_dicom_to_bids` | Container Service launch and logs. | [Container Launch Basics](simple-walkthroughs.md#container-launch-basics) |
 | Add project-specific metadata without deploying a plugin. | `openneuro_ds002551_metadata` | Dynamic data type plus Custom Forms. | [Dynamic Datatype Intro](simple-walkthroughs.md#dynamic-datatype-intro) |
@@ -52,6 +52,18 @@ For prose-only tutorials, the same information can be written as:
 Recommended dataset: tcia_dicom_intro
 Also works with: tcia_collection_smallest, tcia_mouse_astrocytoma_mri
 ```
+
+Every self-service tutorial should also include the same learner guidance near
+the workflow steps:
+
+- What this step changes in XNAT.
+- Where to look in the UI after the step.
+- The exact success condition before moving on.
+- The first useful page or log to check if the result is missing.
+
+Avoid feature-only instructions such as "open Container Service" without
+saying what object the learner should inspect and what a successful result
+looks like.
 
 ## Tutorial Topics
 
@@ -132,10 +144,10 @@ tutorials. This is not a one-dataset-to-one-tutorial mapping.
 2. Inspect the anatomical, functional, SBRef, and fieldmap scans and connect
    protocol names to BIDS targets.
 3. Run `bids-mapping-generator` and review the saved mapping.
-4. Run `dcm2bids-session-v16` and inspect generated scan-level NIfTI/BIDS
+4. Run `dcm2bids-session-v17` and inspect generated scan-level NIfTI/BIDS
    resources.
 5. Run or review `bids-mriqc-assessor`, then open the assessor `DATA` resource.
-6. Use [Complete BIDS workflow](07-complete-bids-walkthrough.md) for the full
+6. Use [Complete BIDS workflow](06-complete-bids-walkthrough.md) for the full
    self-service steps and troubleshooting notes.
 
 ### 90-Minute Practical Use-Case Tour

@@ -1,4 +1,4 @@
-# Tutorial 02 — MONAI Bundle segmentation (parameterized model)
+# Tutorial 04 — MONAI Bundle segmentation (parameterized model)
 
 A single XNAT container that runs **any** pre-baked MONAI Bundle on either
 a DICOM scan or a NIfTI resource, with the model selected at launch time
@@ -29,13 +29,32 @@ via a UI dropdown.
 
 ## Dataset
 
-See [`sources.yml`](sources.yml) entry `02-monai-bundle-segmentation`.
+See [`sources.yml`](sources.yml) entry `04-monai-bundle-segmentation`.
 Recommended: a full-FOV abdomen+pelvis CT (e.g. TCIA-CPTAC-SAR_v9 venous
 ABD/PELVIS) so both `spleen` and `wholeBody` produce non-empty output.
 
 The minimal `tcia_dicom_intro` from Tutorial 01 has too small a FOV for
 spleen/wholeBody — output will be empty. Use it only to demo the
 *workflow*, not the biological result.
+
+## Beginner Guidance
+
+What this tutorial does: runs an AI segmentation container on a scan or NIfTI
+resource and writes a mask back to XNAT as a derived resource. The source image
+stays unchanged.
+
+What to look for before launch: use a CT scan with enough anatomy for the
+selected model. The launch dialog should show the scan input and a model
+dropdown. If the model expects CT abdomen/pelvis, a small localizer or tiny
+field-of-view scan is not a good biological example.
+
+How to know it worked: the run reaches `Complete` and the scan has a
+`MONAI_SEG_NIFTI` resource containing a segmentation `*.nii.gz`. For a real
+abdomen/pelvis example, the mask should contain non-zero labels.
+
+What to check first if it fails: open command history and read stderr for CUDA,
+memory, model name, or image-conversion errors. Then verify the project has GPU
+capacity and the input scan/resource is the image you intended to segment.
 
 ## Run via UI
 
@@ -44,6 +63,8 @@ spleen/wholeBody — output will be empty. Use it only to demo the
 3. Pick the **Model** from the dropdown — `spleen_ct_segmentation` or
    `wholeBody_ct_segmentation`.
 4. Click **Run**.
+5. Open command history and wait for `Complete`.
+6. Return to the scan and open `MONAI_SEG_NIFTI`.
 
 ## Run via REST
 
@@ -109,5 +130,5 @@ Suggested expansions:
   config + weights + transforms).
 - DICOM-or-NIfTI flexibility lets the same container slot into different
   points in a workflow.
-- Output is plain NIfTI — pair with [Tutorial 03](03-totalsegmentator-vs-monai.md)
+- Output is plain NIfTI — pair with [Tutorial 05](05-totalsegmentator-vs-monai.md)
   to compare against TotalSegmentator.

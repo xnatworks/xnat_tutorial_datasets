@@ -52,6 +52,23 @@ Same shape as `tcia_dicom_intro`:
 - Whichever series happened to be smallest in the collection at load
   time
 
+## Beginner checkpoints
+
+What this dataset teaches: public archives can be loaded by collection query,
+not only by a pinned series UID.
+
+What to look for in XNAT: inspect the project, session, scan, and `DICOM`
+resource exactly as in `tcia_dicom_intro`, then compare the selected series to
+the loader summary.
+
+How to know import worked: XNAT has one archived MR session and one scan with
+DICOM files. The exact series may differ over time because the loader chooses
+the smallest matching series available from TCIA.
+
+What to check first if it does not: check whether the NBIA collection query
+returned a series. If the project exists but no session is archived, inspect
+prearchive before rerunning the import.
+
 ## What to do with it
 
 Identical to `tcia_dicom_intro`. The teaching value here is **not** the

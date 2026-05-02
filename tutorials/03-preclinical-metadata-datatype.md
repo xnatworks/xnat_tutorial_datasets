@@ -1,4 +1,4 @@
-# Tutorial 06 — Preclinical Metadata as a Dynamic Data Type
+# Tutorial 03 — Preclinical Metadata as a Dynamic Data Type
 
 Use a tiny non-imaging table from a rodent fMRI BIDS dataset to define a new
 XNAT dynamic data type. This exercise is deliberately metadata-first: it shows
@@ -10,7 +10,7 @@ Create a subject-assessor data type called `Rodent Acquisition Metadata`, add a
 custom form based on the dataset dictionary, then enter one or more rows from
 `participants.tsv`.
 
-This pairs naturally with [Tutorial 04 — RABIES rodent fMRI preprocessing](04-rabies-rodent-fmri.md).
+This pairs naturally with [Tutorial 07 — RABIES rodent fMRI preprocessing](07-rabies-rodent-fmri.md).
 
 ## Source Dataset
 
@@ -43,6 +43,26 @@ The table has seven mouse participants and these columns:
 
 The companion `participants.json` defines levels such as `m = Male`,
 `Cryo = Bruker Cryoprobe`, `f = Free-breathing`, and `Awake = Awake (no sedation)`.
+
+## Beginner Guidance
+
+What this tutorial does: turns a small BIDS metadata table into searchable XNAT
+records. It teaches where study-specific metadata belongs when it is not an
+image file.
+
+What to look for before starting: the dataset resources include
+`participants.tsv` and `participants.json`, and you are logged in as an
+administrator on a training site that allows Dynamic Data Types and Custom
+Forms.
+
+How to know it worked: each created subject has a `Rodent Acquisition
+Metadata` assessor, the custom form values are visible on the assessor, and
+standard search or table filtering can find records by fields such as coil or
+sedation.
+
+What to check first if it fails: confirm the datatype was created as a
+**Subject Assessor**, confirm the custom form is attached to that datatype, and
+confirm the subject label matches the participant row you are entering.
 
 ## Create The Data Type
 
@@ -110,4 +130,3 @@ without adding a plugin or restarting the server.
   per row.
 - For production studies, define controlled vocabularies up front and keep the
   BIDS data dictionary with the imported metadata.
-

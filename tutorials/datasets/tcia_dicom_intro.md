@@ -44,6 +44,22 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - 1 subject, 1 session, 1 MR scan
 - DICOM resource on the scan (14 files)
 
+## Beginner checkpoints
+
+What this dataset teaches: the smallest useful example of XNAT's project ->
+subject -> session -> scan -> resource hierarchy.
+
+What to look for in XNAT: open `XNAT_TUTORIAL_DICOM`, then the subject,
+session, scan table, and scan-level `DICOM` resource.
+
+How to know import worked: the scan has 14 DICOM files. If auto-archive is
+enabled, the session will already be under the project; otherwise it may first
+appear in prearchive.
+
+What to check first if it does not: open the tutorial loader result and the
+prearchive. If no session exists, rerun prepare or check whether the NBIA
+download failed.
+
 ## What to do with it
 
 | Goal | Container / step |

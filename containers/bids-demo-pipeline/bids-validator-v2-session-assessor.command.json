@@ -1,0 +1,201 @@
+{
+  "name": "bids-validator-v2",
+  "description": "Validate a BIDS dataset (v2 Deno-based validator)",
+  "version": "2.5.6.2",
+  "schema-version": "1.0",
+  "image": "bids/validator:2.5.6",
+  "type": "docker",
+  "command-line": "/bin/sh -c 'deno -A /src/bids-validator.js /bids --format json > /output/validation_report.json; deno -A /src/bids-validator.js /bids --no-color > /output/validation_report.txt; exit 0'",
+  "override-entrypoint": true,
+  "mounts": [
+    {
+      "name": "bids-input",
+      "writable": false,
+      "path": "/bids"
+    },
+    {
+      "name": "output",
+      "writable": true,
+      "path": "/output"
+    }
+  ],
+  "environment-variables": {
+    "PROJECT": "#PROJECT#",
+    "SESSION_LABEL": "#SESSION_LABEL#",
+    "SESSION_ID": "#SESSION_ID#",
+    "APP_NAME": "#APP_NAME#",
+    "APP_VERSION": "#APP_VERSION#"
+  },
+  "ports": {},
+  "inputs": [
+    {
+      "name": "PROJECT",
+      "type": "string",
+      "default-value": "",
+      "required": false,
+      "select-values": []
+    },
+    {
+      "name": "SESSION_LABEL",
+      "type": "string",
+      "default-value": "",
+      "required": false,
+      "select-values": []
+    },
+    {
+      "name": "SESSION_ID",
+      "type": "string",
+      "default-value": "",
+      "required": false,
+      "select-values": []
+    },
+    {
+      "name": "APP_NAME",
+      "type": "string",
+      "default-value": "bids-validator",
+      "required": false,
+      "select-values": []
+    },
+    {
+      "name": "APP_VERSION",
+      "type": "string",
+      "default-value": "2.5.6",
+      "required": false,
+      "select-values": []
+    }
+  ],
+  "outputs": [
+    {
+      "name": "validation-report",
+      "description": "BIDS validation report (v2)",
+      "required": false,
+      "mount": "output",
+      "path": ""
+    }
+  ],
+  "xnat": [
+    {
+      "name": "bids-validator-v2-project",
+      "description": "Validate project BIDS dataset (v2)",
+      "contexts": [
+        "xnat:projectData"
+      ],
+      "external-inputs": [
+        {
+          "name": "project",
+          "type": "Project",
+          "required": true,
+          "load-children": true
+        }
+      ],
+      "derived-inputs": [
+        {
+          "name": "project-id",
+          "type": "string",
+          "required": true,
+          "provides-value-for-command-input": "PROJECT",
+          "user-settable": false,
+          "load-children": true,
+          "derived-from-wrapper-input": "project",
+          "derived-from-xnat-object-property": "id",
+          "multiple": false
+        },
+        {
+          "name": "bids-resource",
+          "type": "Resource",
+          "matcher": "@.label == 'BIDS'",
+          "required": true,
+          "provides-files-for-command-mount": "bids-input",
+          "load-children": true,
+          "derived-from-wrapper-input": "project",
+          "multiple": false
+        }
+      ],
+      "output-handlers": [
+        {
+          "name": "validation-handler",
+          "accepts-command-output": "validation-report",
+          "as-a-child-of": "project",
+          "type": "Resource",
+          "label": "BIDS_validation",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "name": "bids-validator-v2-session",
+      "description": "Validate a single session BIDS dataset (v2) using xnat2bids setup",
+      "contexts": [
+        "xnat:imageSessionData"
+      ],
+      "external-inputs": [
+        {
+          "name": "session",
+          "type": "Session",
+          "required": true,
+          "provides-files-for-command-mount": "bids-input",
+          "via-setup-command": "xnatworks/xnat2bids-setup:1.7:xnat2bids",
+          "load-children": false
+        }
+      ],
+      "derived-inputs": [
+        {
+          "name": "session-id",
+          "type": "string",
+          "required": true,
+          "provides-value-for-command-input": "SESSION_ID",
+          "user-settable": false,
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "id",
+          "multiple": false
+        },
+        {
+          "name": "session-label",
+          "type": "string",
+          "required": true,
+          "provides-value-for-command-input": "SESSION_LABEL",
+          "user-settable": false,
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "label",
+          "multiple": false
+        },
+        {
+          "name": "project-id",
+          "type": "string",
+          "required": true,
+          "provides-value-for-command-input": "PROJECT",
+          "user-settable": false,
+          "load-children": true,
+          "derived-from-wrapper-input": "session",
+          "derived-from-xnat-object-property": "project-id",
+          "multiple": false
+        }
+      ],
+      "output-handlers": [
+        {
+          "name": "bids-validator-assessor",
+          "accepts-command-output": "validation-report",
+          "via-wrapup-command": "xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup",
+          "as-a-child-of": "session",
+          "type": "Assessor",
+          "tags": []
+        },
+        {
+          "name": "validation-data-resource",
+          "accepts-command-output": "validation-report",
+          "as-a-child-of": "bids-validator-assessor",
+          "type": "Resource",
+          "label": "DATA",
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "container-labels": {},
+  "generic-resources": {},
+  "ulimits": {},
+  "secrets": [],
+  "visibility": "public"
+}

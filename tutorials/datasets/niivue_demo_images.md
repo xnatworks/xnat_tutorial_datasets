@@ -51,6 +51,23 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - A project-level `NIFTI` resource containing the volumes (no per-scan
   ingest — these are reference images, not patient sessions)
 
+## Beginner checkpoints
+
+What this dataset teaches: not every useful XNAT file collection needs to be a
+DICOM session. Project-level resources are useful for shared reference images,
+atlases, and viewer test files.
+
+What to look for in XNAT: open the project resources and inspect the `NIFTI`
+resource file list.
+
+How to know import worked: the project-level resource contains many visually
+distinct `*.nii` or `*.nii.gz` files, including templates, atlases, and example
+contrast images.
+
+What to check first if it does not: make sure you are looking at project
+resources rather than a session scan table. This dataset is loaded as files,
+not as DICOM scans.
+
 ## Walkthrough
 
 Pick 2-3 contrasting volumes and walk through:

@@ -1,4 +1,4 @@
-# Tutorial 03 — TotalSegmentator vs MONAI wholeBody (comparison)
+# Tutorial 05 — TotalSegmentator vs MONAI wholeBody (comparison)
 
 Run two whole-body segmentation pipelines on the **same** abdomen CT and
 compare. Discuss agreement, label-space differences, and runtime tradeoffs.
@@ -15,9 +15,27 @@ compare. Discuss agreement, label-space differences, and runtime tradeoffs.
 
 ## Dataset
 
-See [`sources.yml`](sources.yml) entry `03-totalsegmentator-vs-monai`
-(aliased to `02-monai-bundle-segmentation`). Use the same abdomen+pelvis
+See [`sources.yml`](sources.yml) entry `05-totalsegmentator-vs-monai`
+(aliased to `04-monai-bundle-segmentation`). Use the same abdomen+pelvis
 CT for both pipelines.
+
+## Beginner Guidance
+
+What this tutorial does: runs two segmentation approaches on the same input
+scan so learners can compare outputs rather than treat one container result as
+automatically correct.
+
+What to look for before launch: both commands should point at the same source
+scan. The source scan should be a real abdomen/pelvis CT, not a tiny DICOM demo
+series, otherwise the comparison will be visually unhelpful.
+
+How to know it worked: each command reaches `Complete` and the scan has two
+inspectable output resources, one from TotalSegmentator and one from MONAI.
+Both resources should contain NIfTI segmentation files.
+
+What to check first if it fails: compare the two command-history entries. GPU
+or memory errors are environment problems; empty or tiny masks are usually an
+input-data or field-of-view problem.
 
 ## Run
 
@@ -31,6 +49,10 @@ Output is typically RTSTRUCT (DICOM) plus a multi-label NIfTI.
 Right-click the scan → **Run Container** → **MONAI Bundle Segmentation (DICOM scan)**
 → Model = `wholeBody_ct_segmentation`. Output is a single multi-label
 NIfTI as a `MONAI_SEG_NIFTI` resource.
+
+After each launch, open command history and wait for `Complete`. Return to the
+source scan after each run so the learner can see that outputs are attached
+beside the original data.
 
 ## Compare
 
@@ -60,6 +82,13 @@ for l in sorted(set(np.unique(ts)) | set(np.unique(mn))):
     print(f"label {l:3d}: TS={int((ts==l).sum()):>10d}  MN={int((mn==l).sum()):>10d}")
 ```
 
+## Verify
+
+Open both segmentation files in the same viewer with the source CT. The two
+outputs should broadly agree on large organs but may diverge on small
+structures. If one file is missing, empty, or attached to a different scan, fix
+that before discussing model agreement.
+
 ## Talking points
 
 - **Reference pipeline (TotalSegmentator)** — community-blessed gold
@@ -75,5 +104,5 @@ for l in sorted(set(np.unique(ts)) | set(np.unique(mn))):
 ## What's next
 
 For brain segmentation comparison, see
-[Tutorial 04 — RABIES rodent fMRI](04-rabies-rodent-fmri.md), which steps
+[Tutorial 07 — RABIES rodent fMRI](07-rabies-rodent-fmri.md), which steps
 into the truly preclinical (small-animal) territory.
