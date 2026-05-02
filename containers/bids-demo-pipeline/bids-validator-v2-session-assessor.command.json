@@ -1,7 +1,7 @@
 {
   "name": "bids-validator-v2",
   "description": "Validate a BIDS dataset (v2 Deno-based validator)",
-  "version": "2.5.6.1",
+  "version": "2.5.6.2",
   "schema-version": "1.0",
   "image": "bids/validator:2.5.6",
   "type": "docker",
@@ -177,7 +177,7 @@
         {
           "name": "bids-validator-assessor",
           "accepts-command-output": "validation-report",
-          "via-wrapup-command": "xnatworks/bids-assessor-wrapup:2.6:bids-assessor-wrapup",
+          "via-wrapup-command": "xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup",
           "as-a-child-of": "session",
           "type": "Assessor",
           "tags": []

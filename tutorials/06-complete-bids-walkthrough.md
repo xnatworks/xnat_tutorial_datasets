@@ -191,7 +191,7 @@ What to look for:
 - The MRIQC assessor handler uses
   `xnatworks/bids-assessor-wrapup:2.5:bids-assessor-wrapup`.
 - The BIDS validator assessor handler uses
-  `xnatworks/bids-assessor-wrapup:2.6:bids-assessor-wrapup`.
+  `xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup`.
 - The orchestration named `Tutorial BIDS Demo Pipeline` is assigned to the
   project.
 
@@ -338,7 +338,7 @@ What to look for:
 How to know it worked: the session has a BIDS validator assessor with explicit
 pass/fail, error count, warning count, and a non-empty `DATA` resource. If it
 fails during command resolution, verify that the wrapup command
-`xnatworks/bids-assessor-wrapup:2.6:bids-assessor-wrapup` is installed and that
+`xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup` is installed and that
 the BIDS assessor schema plugin includes `bids:bidsValidatorRunAssessorData`.
 
 ## Run MRIQC Through The BIDS Setup Path
