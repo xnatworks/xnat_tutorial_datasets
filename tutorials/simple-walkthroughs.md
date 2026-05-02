@@ -546,7 +546,7 @@ Walkthrough:
 3. Open DICOM headers for several scans.
 4. Find protocol, series, task, acquisition, direction, or run labels.
 5. Run or review the `bids-mapping-generator` output.
-6. Launch `dcm2bids-session-v16` with `skip unusable = true`.
+6. Launch `dcm2bids-session-v17` with `skip unusable = true`.
 7. Open command history and watch the conversion logs.
 8. Confirm generated NIfTI and BIDS sidecar resources exist on usable scans.
 9. Launch `bids-materialize` to save a session-level `BIDS` resource.

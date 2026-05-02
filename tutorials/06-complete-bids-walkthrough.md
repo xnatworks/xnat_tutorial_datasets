@@ -62,8 +62,9 @@ write outputs back as assessors/resources.
   `https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main`.
 - The BIDS demo command set is installed and enabled for the tutorial project:
   - `bids-mapping-generator`
-  - `dcm2bids-session-v16`
+  - `dcm2bids-session-v17`
   - `bids-materialize`
+  - `bids-validator-v2`
   - `bids-mriqc-assessor`
 - Optional heavy BIDS apps are installed only when the site is ready for them:
   - `fmriprep-session-assessor`
@@ -176,7 +177,7 @@ project. This is the preflight stage for reproducible teaching.
 5. Enable the commands on the project.
 6. Confirm the Docker image tags are pinned:
    - `xnatworks/bids-mapping-generator:1.7.4`
-   - `xnatworks/dcm2bids-session:2.16`
+   - `xnatworks/dcm2bids-session:2.17`
    - `busybox:1.37.0`
    - `bids/validator:2.5.6`
    - `nipreps/mriqc:24.0.2`
@@ -230,8 +231,9 @@ container to decide which scans should become BIDS files. If the mapping treats
 localizers as BIDS inputs or misses the T1w/BOLD series, review the source DICOM
 metadata and mapping rules before converting.
 
-Current live-demo note: use `dcm2bids-session:2.16` for this dataset. It
-preserves echo labels for multi-echo BOLD and fieldmap outputs. If a conversion
+Current live-demo note: use `dcm2bids-session:2.17` for this dataset. It
+preserves echo labels for multi-echo BOLD and converts Siemens GRE fieldmap
+pairs into `magnitude1`, `magnitude2`, and `phasediff` files. If a conversion
 reports a naming collision, treat that as a mapping problem to fix explicitly,
 not as a successful partial conversion.
 
@@ -241,9 +243,9 @@ partners. BIDScoin asks learners to edit the task labels into meaningful study
 names such as `task-reward` and `task-stop`; an automated mapper should not
 pretend it can infer those behavioral names from the scanner protocol alone.
 For this tutorial, the automated pass is acceptable when the BIDS tree contains
-T1w, BOLD, SBRef, and fieldmap files with distinct acquisition/run/echo labels.
-Learners can then edit the BIDS map to replace generic task labels with the
-study-specific names used in the BIDScoin reference exercise.
+T1w, BOLD, SBRef, and GRE fieldmap pairs represented as magnitude plus
+phasediff files. Learners can then edit the BIDS map to replace generic task
+labels with the study-specific names used in the BIDScoin reference exercise.
 
 ## Convert DICOM To BIDS Resources
 
@@ -252,7 +254,7 @@ and BIDS sidecar JSON resources. This creates BIDS-shaped outputs on scan
 resources, but it does not yet create one complete session-level BIDS folder.
 
 1. Open the BIDScoin tutorial session page.
-2. Launch `dcm2bids-session-v16`.
+2. Launch `dcm2bids-session-v17`.
 3. Use `skip unusable = true`.
 4. Use `overwrite = false` for the first run.
 5. Use `overwrite = true` only when intentionally rerunning after deleting or
@@ -498,7 +500,7 @@ then debug the live XNAT archive content, not the source ZIP first:
 1. Delete or reset `XNAT_TUTORIAL_REPROIN`.
 2. Re-prepare `reproin_dicom_to_bids` from the tutorial loader.
 3. Open scan `16` and confirm its DICOM resource has exactly 4 files.
-4. Rerun `dcm2bids-session-v16`.
+4. Rerun `dcm2bids-session-v17`.
 5. If rerunning in an existing project, use `overwrite = true` or delete prior
    generated NIfTI/BIDS resources before retrying.
 6. If it still fails, open the command's stderr log from command history. The
@@ -507,7 +509,7 @@ then debug the live XNAT archive content, not the source ZIP first:
 ### `dcm2bids-session` Fails With A Naming Collision
 
 A naming collision means two converted files are trying to write the same final
-BIDS path. With `dcm2bids-session:2.16`, this should fail loudly instead of
+BIDS path. With `dcm2bids-session:2.17`, this should fail loudly instead of
 silently overwriting data. The failure may look like:
 
 ```text

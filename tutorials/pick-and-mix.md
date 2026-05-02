@@ -144,7 +144,7 @@ tutorials. This is not a one-dataset-to-one-tutorial mapping.
 2. Inspect the anatomical, functional, SBRef, and fieldmap scans and connect
    protocol names to BIDS targets.
 3. Run `bids-mapping-generator` and review the saved mapping.
-4. Run `dcm2bids-session-v16` and inspect generated scan-level NIfTI/BIDS
+4. Run `dcm2bids-session-v17` and inspect generated scan-level NIfTI/BIDS
    resources.
 5. Run or review `bids-mriqc-assessor`, then open the assessor `DATA` resource.
 6. Use [Complete BIDS workflow](06-complete-bids-walkthrough.md) for the full

@@ -46,7 +46,7 @@ ${BIDS_ROOT}/
 
 Each NIfTI needs a sidecar `*.json` with at minimum `RepetitionTime`.
 
-XNAT BIDS pipelines (`bids-tree-builder`, `dcm2bids-session-v16`)
+XNAT BIDS pipelines (`bids-tree-builder`, `dcm2bids-session-v17`)
 generate this structure from raw scans — run them first if a session
 doesn't yet have a BIDS resource.
 

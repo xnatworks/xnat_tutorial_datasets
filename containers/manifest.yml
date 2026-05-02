@@ -25,13 +25,13 @@ profiles:
         command_json_sha256: "2cd43f3fc3db7f9126755524aa9adb1bdbd758de31239309fa7ada7a4f02e7e0"
       - id: "dcm2bids_session"
         label: "Convert DICOM to BIDS/NIfTI"
-        image: "xnatworks/dcm2bids-session:2.16"
+        image: "xnatworks/dcm2bids-session:2.17"
         command_names:
-          - "dcm2bids-session-v16"
+          - "dcm2bids-session-v17"
         wrapper_names:
-          - "dcm2bids-session-v16"
-        command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v16.command.json"
-        command_json_sha256: "7625d4f1b119b3862b99794f2a92495f72437cef70a603f402d80770717d525d"
+          - "dcm2bids-session-v17"
+        command_json_path: "containers/bids-demo-pipeline/dcm2bids-session-v17.command.json"
+        command_json_sha256: "5b24653ebd5063ab06227d6ee926dc6f930871bc804dc9055ef0313873d3ff64"
       - id: "bids_materialize"
         label: "Materialize BIDS resource"
         image: "busybox:1.37.0"
