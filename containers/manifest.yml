@@ -16,13 +16,13 @@ profiles:
     commands:
       - id: "bids_mapping_generator"
         label: "Generate BIDS mapping"
-        image: "xnatworks/bids-mapping-generator:1.7.2"
+        image: "xnatworks/bids-mapping-generator:1.7.3"
         command_names:
           - "bids-mapping-generator"
         wrapper_names:
           - "bids-mapping-generator-session"
         command_json_path: "containers/bids-demo-pipeline/bids-mapping-generator-session.command.json"
-        command_json_sha256: "058d29223ca49ef613e5c0ac659cf76b824bedc6de1e64915dc84d17c32d0732"
+        command_json_sha256: "decffbe2012f792da66be55fea094b744078492ee1d6b1fe8dbdbfb39d104121"
       - id: "dcm2bids_session"
         label: "Convert DICOM to BIDS/NIfTI"
         image: "xnatworks/dcm2bids-session:2.16"

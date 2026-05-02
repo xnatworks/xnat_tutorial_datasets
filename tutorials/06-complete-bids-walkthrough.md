@@ -175,7 +175,7 @@ project. This is the preflight stage for reproducible teaching.
 4. Install missing command JSONs if needed.
 5. Enable the commands on the project.
 6. Confirm the Docker image tags are pinned:
-   - `xnatworks/bids-mapping-generator:1.7.2`
+   - `xnatworks/bids-mapping-generator:1.7.3`
    - `xnatworks/dcm2bids-session:2.16`
    - `busybox:1.37.0`
    - `bids/validator:2.5.6`
