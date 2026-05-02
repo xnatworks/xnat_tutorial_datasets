@@ -22,6 +22,7 @@ These walkthroughs are the human-facing companion.
 | MSD Task04 Hippocampus | MR (T1w) | NIfTI + labels | [msd_hippocampus_nnunet](msd_hippocampus_nnunet.md) |
 | TCIA QIN-PROSTATE smallest series | MR | DICOM | [tcia_collection_smallest](tcia_collection_smallest.md) |
 | TCIA Mouse-Astrocytoma | MR (mouse) | DICOM | [tcia_mouse_astrocytoma_mri](tcia_mouse_astrocytoma_mri.md) |
+| OpenNeuro ds002551 rodent participant metadata | tabular | TSV/JSON | [openneuro_ds002551_metadata](openneuro_ds002551_metadata.md) |
 
 ## Cross-cutting themes
 
@@ -34,10 +35,12 @@ Some tutorial arcs span multiple datasets:
   hands-on) → `fitlins_flanker_demo` (group, automated)
 - **Human → preclinical bridge** — `tcia_dicom_intro` →
   `tcia_mouse_astrocytoma_mri`, then jump to
-  [container 04 RABIES](../04-rabies-rodent-fmri.md)
+  [container 07 RABIES](../07-rabies-rodent-fmri.md)
+- **Dynamic metadata** — `openneuro_ds002551_metadata` →
+  [Tutorial 03 preclinical metadata datatype](../03-preclinical-metadata-datatype.md)
 - **Segmentation** — `msd_hippocampus_nnunet` for nnU-Net,
-  [container 02 MONAI bundle](../02-monai-bundle-segmentation.md) and
-  [container 03 TS vs MONAI](../03-totalsegmentator-vs-monai.md) for
+  [container 04 MONAI bundle](../04-monai-bundle-segmentation.md) and
+  [container 05 TS vs MONAI](../05-totalsegmentator-vs-monai.md) for
   full-body
 - **Viewers** — `niivue_demo_images` is the easiest "open lots of
   volumes fast" project for viewer demos
@@ -56,6 +59,21 @@ Some tutorial arcs span multiple datasets:
 The container walkthroughs at the parent
 [tutorials/](../) directory complement these — the dataset docs
 emphasize *data*, the container docs emphasize *workflow*.
+
+## Self-service guidance pattern
+
+Each dataset walkthrough should answer four beginner questions:
+
+- **What this dataset teaches**: why this sample is worth loading.
+- **What to look for in XNAT**: project, subject, session, scan, resource, or
+  assessor objects the learner should inspect.
+- **How to know import worked**: the concrete object count, resource label, or
+  file that should exist after prepare/import.
+- **What to check first if it does not**: usually the tutorial loader result,
+  prearchive row, project resources, or command history.
+
+This keeps dataset pages useful on their own, even when a learner did not
+start from a full workshop agenda.
 
 ## Status
 

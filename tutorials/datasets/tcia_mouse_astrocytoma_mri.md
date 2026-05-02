@@ -52,6 +52,22 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - Project `XNAT_TUTORIAL_MOUSE`
 - 1 subject (mouse), 1 MR session, 1 anatomical scan with native DICOM
 
+## Beginner checkpoints
+
+What this dataset teaches: mouse MRI still fits the same XNAT hierarchy, but
+the metadata and downstream analysis choices differ from human imaging.
+
+What to look for in XNAT: open the session scan table, scan metadata, DICOM
+headers, and viewer. Compare the image scale and voxel size to a human MR
+example.
+
+How to know import worked: the project has one mouse MR session with an
+anatomical scan and native DICOM files.
+
+What to check first if it does not: confirm the TCIA download completed and
+that the session is archived. If the viewer looks unusual, verify voxel size
+and orientation before assuming import failed.
+
 ## What to do with it
 
 | Goal | Tool |
@@ -59,7 +75,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 | DICOM → NIfTI | [`dcm2niix`](../01-dcm2niix.md) — works on rodent data unchanged |
 | Brain extraction | rodent-specific atlas-based methods (PCNN3D, RATS); SynthStrip works surprisingly well too |
 | Atlas registration | Allen Mouse Brain Atlas — see `AIDAmri` |
-| Full preclinical pipeline | [RABIES](../04-rabies-rodent-fmri.md) (needs a paired functional series — pair with OpenNeuro ds002551 for that) |
+| Full preclinical pipeline | [RABIES](../07-rabies-rodent-fmri.md) (needs a paired functional series — pair with OpenNeuro ds002551 for that) |
 
 ## Walkthrough
 

@@ -1,9 +1,9 @@
 {
   "name": "bids-mapping-generator",
   "description": "Generate a draft BIDS mapping from XNAT project scan inventory. Inventories all scans, auto-matches series descriptions to BIDS names, and saves as a project resource. Supports session-level mode for incremental mapping with optional DICOM header reading.",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "schema-version": "1.0",
-  "image": "xnatworks/bids-mapping-generator:1.7.0",
+  "image": "xnatworks/bids-mapping-generator:1.7.2",
   "type": "docker",
   "command-line": "python /src/generate_bidsmap.py --project #PROJECT_ID# --host $XNAT_HOST --user $XNAT_USER --pass $XNAT_PASS --output /output --format dcm2bids #SAVE_CONFIG# #SESSION_ID# #APPLY_SUGGESTIONS# #SESSION_DIR#",
   "override-entrypoint": true,
@@ -40,10 +40,10 @@
     },
     {
       "name": "session-dir",
-      "description": "Path to session archive directory for DICOM header reading",
+      "description": "Path to the mounted session archive directory for DICOM header reading",
       "type": "string",
       "required": false,
-      "default-value": "",
+      "default-value": "/input",
       "replacement-key": "#SESSION_DIR#",
       "command-line-flag": "--session-dir"
     },
@@ -77,7 +77,7 @@
   "xnat": [
     {
       "name": "bids-mapping-generator-session",
-      "description": "Run xnatworks/bids-mapping-generator:1.7.0",
+      "description": "Run xnatworks/bids-mapping-generator:1.7.2",
       "contexts": [
         "xnat:imageSessionData"
       ],
@@ -106,14 +106,6 @@
           "derived-from-wrapper-input": "session",
           "derived-from-xnat-object-property": "id",
           "provides-value-for-command-input": "session-id"
-        },
-        {
-          "name": "session-dir-value",
-          "description": "Session archive directory path",
-          "type": "string",
-          "derived-from-wrapper-input": "session",
-          "derived-from-xnat-object-property": "directory",
-          "provides-value-for-command-input": "session-dir"
         }
       ],
       "output-handlers": [

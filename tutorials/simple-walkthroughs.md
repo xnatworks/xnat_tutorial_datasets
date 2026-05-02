@@ -32,6 +32,22 @@ If the plugin is not installed, ask your administrator to preload the
 recommended dataset into the named project, then begin at the first XNAT UI
 step in the tutorial.
 
+## How To Use Each Walkthrough
+
+Each short walkthrough follows the same pattern so new XNAT users can move
+without waiting for an instructor:
+
+- **Goal** tells you the concept being taught.
+- **Walkthrough** gives the clicks or actions to perform.
+- **Expected result** tells you what should change in XNAT.
+- **Verify** gives the concrete check before you move on.
+
+If you get stuck, check the current XNAT level first. Most beginner mistakes
+come from launching a session command from a project page, looking for a scan
+resource on a project resource page, or expecting a BIDS resource to look like
+a DICOM scan table. Use the vocabulary in [`README.md`](README.md#for-new-xnat-users)
+to re-orient: project, subject, session, scan, resource, assessor, container.
+
 ## Choose A Tutorial
 
 | Tutorial | Recommended dataset |
@@ -509,7 +525,7 @@ Recommended dataset: `bidscoin_dicom_to_bids`
 
 Also works with: `reproin_dicom_to_bids`
 
-Full tutorial: [Complete BIDS workflow](07-complete-bids-walkthrough.md)
+Full tutorial: [Complete BIDS workflow](06-complete-bids-walkthrough.md)
 
 Time: 20 minutes
 
@@ -899,10 +915,22 @@ Walkthrough:
 3. Check whether the relevant command wrapper is enabled for the project.
 4. Check required project resources, including `LICENSES/fs_license.txt` for
    FreeSurfer-based workflows.
-5. Review memory, CPU, disk, and runtime expectations.
-6. Open the command launch dialog but do not submit yet.
-7. Review resolved inputs and output handlers.
-8. Run only on a site where this command and dataset have already been
+5. If you have your own FreeSurfer license, add it to the project:
+   - Create or open project resource `LICENSES`.
+   - Upload the license file as `fs_license.txt`.
+   - Confirm the final project path is `LICENSES/fs_license.txt`.
+6. Optional REST upload:
+
+   ```bash
+   curl -u "${XNAT_USER}:${XNAT_PASS}" -X PUT \
+     --data-binary @/path/to/your/fs_license.txt \
+     "${XNAT_HOST}/data/projects/${PROJECT}/resources/LICENSES/files/fs_license.txt?overwrite=true"
+   ```
+
+7. Review memory, CPU, disk, and runtime expectations.
+8. Open the command launch dialog but do not submit yet.
+9. Review resolved inputs and output handlers.
+10. Run only on a site where this command and dataset have already been
    validated.
 
 Expected result: You understand why heavy BIDS apps need license, compute,

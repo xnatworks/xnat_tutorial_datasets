@@ -50,6 +50,22 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - BIDS resource at the session level (already in BIDS layout — no
   conversion needed)
 
+## Beginner checkpoints
+
+What this dataset teaches: BIDS can be stored in XNAT as a structured resource
+that BIDS apps can consume without DICOM conversion.
+
+What to look for in XNAT: open the session-level `BIDS` resource and inspect
+`dataset_description.json`, `participants.tsv`, `anat`, `func`, and
+`*_events.tsv` files.
+
+How to know import worked: the BIDS resource contains a complete `sub-01`
+layout with T1w, BOLD, sidecar JSON, and events TSV files.
+
+What to check first if it does not: confirm the import created a resource
+named `BIDS` and not only a project resource with staged source files. If the
+resource is missing files, rerun prepare and inspect the loader summary.
+
 ## What to do with it
 
 | Goal | Tool |
@@ -63,10 +79,16 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 1. Inspect the BIDS resource on the session. Show
    `dataset_description.json`, `participants.tsv`, the events.tsv with
    onset/duration/trial_type for each Flanker trial.
-2. Launch fMRIPrep with `--participant_label sub-01 --output-spaces MNI152NLin2009cAsym`.
-3. While it runs (~30 min), discuss BIDS-Apps as the pattern for
+2. Before launching fMRIPrep, add your own FreeSurfer license to the project if
+   it is not already present. Create or open project resource `LICENSES`, upload
+   the file as `fs_license.txt`, and confirm the project path is exactly
+   `LICENSES/fs_license.txt`. The fMRIPrep wrapper uses that file as
+   `/Project/fs_license.txt`.
+3. Launch fMRIPrep with
+   `--participant-label sub-01 --output-spaces MNI152NLin2009cAsym`.
+4. While it runs (~30 min), discuss BIDS-Apps as the pattern for
    reproducible neuroimaging.
-4. View output: `sub-01_task-flanker_run-1_space-MNI152*_desc-preproc_bold.nii.gz`
+5. View output: `sub-01_task-flanker_run-1_space-MNI152*_desc-preproc_bold.nii.gz`
    in OHIF/Workbench. Confluence point with the BIDS resource on the
    session means subsequent tools find inputs automatically.
 

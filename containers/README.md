@@ -14,7 +14,7 @@ This folder is intentionally narrower than the general containers catalog:
 
 | Profile | Purpose | Commands |
 |---|---|---|
-| `bids_demo_pipeline` | DICOM to BIDS preprocessing walkthrough | BIDS mapping, dcm2bids, BIDS materialization, MRIQC, fMRIPrep, QSIPrep |
+| `bids_demo_pipeline` | DICOM to BIDS preprocessing walkthrough | BIDS mapping, dcm2bids, BIDS materialization, BIDS validation, MRIQC, fMRIPrep, QSIPrep |
 
 The tutorial plugin uses `manifest.yml` to decide which commands are required
 for a selected tutorial dataset.

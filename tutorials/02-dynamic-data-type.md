@@ -1,4 +1,4 @@
-# Tutorial 05 — Dynamic Data Type and Custom Form
+# Tutorial 02 — Dynamic Data Type and Custom Form
 
 Create a lightweight XNAT data type during a workshop, then attach a custom
 form so users can collect searchable review fields without writing a plugin or
@@ -36,6 +36,24 @@ series** from the dataset downloader before starting this exercise.
 2. Site administrator account.
 3. One project with at least one image session.
 4. Custom Forms enabled on the site.
+
+## Beginner Guidance
+
+What this tutorial does: adds a small new data object type to XNAT and gives it
+a form so users can record structured QC review values. This is metadata
+configuration, not image processing.
+
+What to look for before starting: you are logged in as a site administrator,
+the training site allows Dynamic Data Types, and the sample project has at
+least one image session where an image assessor can be created.
+
+How to know it worked: the session Actions box offers **Add Tutorial QC
+Review**, saving the form creates an assessor under the session, and the review
+fields can be searched or filtered.
+
+What to check first if it fails: confirm the dynamic datatype was created as an
+**Image Assessor**, confirm the action-box option was enabled, and confirm the
+custom form is attached to the same datatype you created.
 
 ## Create The Data Type
 
@@ -111,4 +129,4 @@ Repeat the exercise with a subject assessor:
 - Use case: teach subject-level metadata capture and search.
 
 For a concrete non-imaging preclinical table, use
-[Tutorial 06 — Preclinical Metadata as a Dynamic Data Type](06-preclinical-metadata-datatype.md).
+[Tutorial 03 — Preclinical Metadata as a Dynamic Data Type](03-preclinical-metadata-datatype.md).

@@ -21,6 +21,24 @@ See [`sources.yml`](sources.yml) entry `01-dcm2niix` for the upstream
 reference and license. The fallback tutorial subset is mirrored in this
 repo under `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip`.
 
+## Beginner Guidance
+
+What this tutorial does: starts with one scan's raw DICOM files and runs a
+scan-level container that writes derived NIfTI files back to the same scan.
+
+What to look for before launch: the session has a scan table, the chosen scan
+has a `DICOM` resource, and the project has the `dcm2niix-scan` wrapper
+enabled.
+
+How to know it worked: the scan gains a new `NIFTI` resource with one
+`*.nii.gz` image and one `*.json` sidecar. The source `DICOM` resource should
+still be present; conversion adds outputs, it does not replace the raw data.
+
+What to check first if it fails: open Container Service command history,
+select the failed `dcm2niix` run, and read stderr. Then return to the scan and
+confirm the `DICOM` resource contains image DICOM files, not an empty or
+non-image folder.
+
 ## Setup
 
 1. Upload the DICOM archive to a project on your XNAT.
@@ -32,6 +50,9 @@ repo under `datasets/xnat-tutorial/tcia_dicom_intro/archive.zip`.
 1. Navigate to the session.
 2. Right-click the scan → **Run Container** → `dcm2niix-scan`.
 3. Accept defaults; click **Run**.
+4. Open command history from the project or site navigation.
+5. Wait until the run status is `Complete`.
+6. Return to the scan and open the new `NIFTI` resource.
 
 ## Run via REST
 
@@ -62,7 +83,7 @@ curl -s -u ${XNAT_USER}:${XNAT_PASS} \
 ```
 
 You should see one `*.nii.gz` and one `*.json`. The NIfTI is the input for
-[Tutorial 02 — MONAI Bundle segmentation](02-monai-bundle-segmentation.md).
+[Tutorial 04 — MONAI Bundle segmentation](04-monai-bundle-segmentation.md).
 
 ## Talking points
 
@@ -71,5 +92,5 @@ You should see one `*.nii.gz` and one `*.json`. The NIfTI is the input for
 - The scan-level `NIFTI` resource is the conventional output location;
   many downstream containers (MONAI, BIDS pipelines) auto-detect it.
 - For corrupted or aggressively-anonymized DICOMs, the
-  `xnatworks/monai-bundle-nifti` container in Tutorial 02 has a
+  `xnatworks/monai-bundle-nifti` container in Tutorial 04 has a
   pydicom-cleanup fallback baked in.

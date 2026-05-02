@@ -47,6 +47,22 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 - 1 subject, 1 MR session, 7 scans (T1w, T2w, BOLD ×N, DWI, fmap)
 - Original DICOMs preserved on each scan
 
+## Beginner checkpoints
+
+What this dataset teaches: scanner protocol names can carry enough structure
+to drive DICOM-to-BIDS conversion.
+
+What to look for in XNAT: open the MR session scan table, inspect several scan
+`DICOM` resources, and compare `ProtocolName` values to expected BIDS names.
+
+How to know import worked: the project has one archived MR session, the scan
+table has the expected neuroimaging series, and each scan keeps its original
+DICOM resource.
+
+What to check first if it does not: check the prearchive and scan-level DICOM
+file counts. If conversion fails later, verify the live XNAT scan contents
+before blaming the upstream archive.
+
 ## Walkthrough
 
 1. Inspect DICOM ProtocolName fields — note the `acq-`, `run-`, `dir-`
@@ -60,7 +76,7 @@ curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
 3. The output `BIDS` resource lands on the session — inspect the tree.
 4. Discuss naming: `sub-<id>_ses-<id>_acq-<acq>_run-<n>_T1w.nii.gz` etc.
 5. Pipe the BIDS resource into [fMRIPrep](openneuro_flanker_bids.md) or
-   [RABIES](../04-rabies-rodent-fmri.md) — same input shape.
+   [RABIES](../07-rabies-rodent-fmri.md) — same input shape.
 
 ## Talking points
 

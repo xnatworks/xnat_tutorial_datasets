@@ -33,7 +33,40 @@ datasets:
     license: CC-BY-4.0
     citation: https://doi.org/10.7937/K9/TCIA.2018.MR1CKGND
 
-  - tutorial: 02-monai-bundle-segmentation
+  - tutorial: 02-dynamic-data-type
+    title: XNAT 1.10 Dynamic Data Type and Custom Form
+    modality: admin-workflow
+    purpose: create a simple image-assessor data type and searchable QC form
+    primary:
+      type: documentation
+      url: https://wiki.xnat.org/documentation/adding-a-dynamic-data-type
+    fallback:
+      type: uses-existing-sample
+      ref: 01-dcm2niix
+      notes: load tcia_dicom_intro first so the exercise has an image session
+    license: documentation
+    citation: https://wiki.xnat.org/documentation/adding-a-dynamic-data-type
+
+  - tutorial: 03-preclinical-metadata-datatype
+    title: OpenNeuro ds002551 rodent participant metadata
+    modality: tabular-metadata
+    purpose: non-imaging preclinical metadata table for a dynamic subject-assessor exercise
+    primary:
+      type: openneuro
+      accession: ds002551
+      url: https://openneuro.org/datasets/ds002551
+      s3: s3://openneuro.org/ds002551
+      files:
+        - participants.tsv
+        - participants.json
+        - dataset_description.json
+    fallback:
+      path: datasets/openneuro/ds002551-metadata
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/openneuro/ds002551-metadata
+    license: CC0
+    citation: https://openneuro.org/datasets/ds002551
+
+  - tutorial: 04-monai-bundle-segmentation
     title: TCIA-CPTAC sarcoma abdomen+pelvis CT
     modality: CT
     purpose: full-FOV abdomen+pelvis CT — produces non-empty output for both spleen and wholeBody MONAI bundles
@@ -49,18 +82,33 @@ datasets:
     license: TCIA Restricted (data use agreement)
     citation: https://doi.org/10.7937/k9/tcia.2018.cptac-sar
 
-  - tutorial: 03-totalsegmentator-vs-monai
-    title: same as tutorial 02
+  - tutorial: 05-totalsegmentator-vs-monai
+    title: same as tutorial 04
     modality: CT
-    purpose: comparison demo uses the identical scan as tutorial 02
+    purpose: comparison demo uses the identical scan as tutorial 04
     primary:
       type: alias
-      ref: 02-monai-bundle-segmentation
+      ref: 04-monai-bundle-segmentation
     fallback:
       type: alias
-      ref: 02-monai-bundle-segmentation
+      ref: 04-monai-bundle-segmentation
 
-  - tutorial: 04-rabies-rodent-fmri
+  - tutorial: 06-complete-bids-walkthrough
+    title: BIDScoin tutorial DICOM subset
+    modality: MR
+    purpose: real human DICOM source data for a complete DICOM-to-BIDS workflow
+    primary:
+      type: bidscoin
+      url: https://bidscoin.readthedocs.io/en/stable/tutorial.html
+      archive_url: https://surfdrive.surf.nl/files/index.php/s/HTxdUbykBZm2cYM/download
+      subset: bidscointutorial/raw/sub-001
+    fallback:
+      path: datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
+    license: BIDScoin tutorial data; cite BIDScoin and its tutorial materials
+    citation: https://bidscoin.readthedocs.io/en/stable/tutorial.html
+
+  - tutorial: 07-rabies-rodent-fmri
     title: OpenNeuro ds002551 mouse rs-fMRI (BIDS)
     modality: MR
     purpose: published BIDS-organized rodent rs-fMRI; works directly with RABIES preprocess
@@ -82,7 +130,7 @@ datasets:
             anat/sub-<id>_ses-<id>_T2w.nii.gz
             func/sub-<id>_ses-<id>_task-rest_bold.nii.gz
 
-  - tutorial: 04-rabies-rodent-fmri-anatomy-only
+  - tutorial: 07-rabies-rodent-fmri-anatomy-only
     title: TCIA Mouse-Astrocytoma anatomical MRI subset
     modality: MR
     purpose: mouse anatomical MRI for sanity-check of brain-extraction / atlas registration steps without full functional series
@@ -95,51 +143,3 @@ datasets:
       raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip
     license: CC-BY-3.0
     citation: https://doi.org/10.7937/K9/TCIA.2018.WB7N9SE0
-
-  - tutorial: 05-dynamic-data-type
-    title: XNAT 1.10 Dynamic Data Type and Custom Form
-    modality: admin-workflow
-    purpose: create a simple image-assessor data type and searchable QC form
-    primary:
-      type: documentation
-      url: https://wiki.xnat.org/documentation/adding-a-dynamic-data-type
-    fallback:
-      type: uses-existing-sample
-      ref: 01-dcm2niix
-      notes: load tcia_dicom_intro first so the exercise has an image session
-    license: documentation
-    citation: https://wiki.xnat.org/documentation/adding-a-dynamic-data-type
-
-  - tutorial: 06-preclinical-metadata-datatype
-    title: OpenNeuro ds002551 rodent participant metadata
-    modality: tabular-metadata
-    purpose: non-imaging preclinical metadata table for a dynamic subject-assessor exercise
-    primary:
-      type: openneuro
-      accession: ds002551
-      url: https://openneuro.org/datasets/ds002551
-      s3: s3://openneuro.org/ds002551
-      files:
-        - participants.tsv
-        - participants.json
-        - dataset_description.json
-    fallback:
-      path: datasets/openneuro/ds002551-metadata
-      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/openneuro/ds002551-metadata
-    license: CC0
-    citation: https://openneuro.org/datasets/ds002551
-
-  - tutorial: 07-complete-bids-walkthrough
-    title: BIDScoin tutorial DICOM subset
-    modality: MR
-    purpose: real human DICOM source data for a complete DICOM-to-BIDS workflow
-    primary:
-      type: bidscoin
-      url: https://bidscoin.readthedocs.io/en/stable/tutorial.html
-      archive_url: https://surfdrive.surf.nl/files/index.php/s/HTxdUbykBZm2cYM/download
-      subset: bidscointutorial/raw/sub-001
-    fallback:
-      path: datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
-      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip
-    license: BIDScoin tutorial data; cite BIDScoin and its tutorial materials
-    citation: https://bidscoin.readthedocs.io/en/stable/tutorial.html
