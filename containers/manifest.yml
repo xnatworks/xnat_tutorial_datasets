@@ -49,7 +49,7 @@ profiles:
         wrapper_names:
           - "bids-validator-v2-session"
         command_json_path: "containers/bids-demo-pipeline/bids-validator-v2-session-assessor.command.json"
-        command_json_sha256: "c771f528b0413d1154ab6be2146ae86711e09f15cd690d48d3876d4d440d43b9"
+        command_json_sha256: "cac3e6a17b6f2806ea690f9a704242271d349d046bf0f652bc30adc16422d811"
       - id: "bids_mriqc_assessor"
         label: "Run MRIQC assessor"
         image: "nipreps/mriqc:24.0.2"
