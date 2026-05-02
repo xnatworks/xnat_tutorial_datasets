@@ -1,9 +1,9 @@
 {
   "name": "bids-mapping-generator",
   "description": "Generate a draft BIDS mapping from XNAT project scan inventory. Inventories all scans, auto-matches series descriptions to BIDS names, and saves as a project resource. Supports session-level mode for incremental mapping with optional DICOM header reading.",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "schema-version": "1.0",
-  "image": "xnatworks/bids-mapping-generator:1.7.3",
+  "image": "xnatworks/bids-mapping-generator:1.7.4",
   "type": "docker",
   "command-line": "python /src/generate_bidsmap.py --project #PROJECT_ID# --host $XNAT_HOST --user $XNAT_USER --pass $XNAT_PASS --output /output --format dcm2bids #SAVE_CONFIG# #SESSION_ID# #APPLY_SUGGESTIONS# #SESSION_DIR#",
   "override-entrypoint": true,
@@ -77,7 +77,7 @@
   "xnat": [
     {
       "name": "bids-mapping-generator-session",
-      "description": "Run xnatworks/bids-mapping-generator:1.7.3",
+      "description": "Run xnatworks/bids-mapping-generator:1.7.4",
       "contexts": [
         "xnat:imageSessionData"
       ],
