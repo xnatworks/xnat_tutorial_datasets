@@ -42,7 +42,7 @@
           "type": "Session",
           "required": true,
           "provides-files-for-command-mount": "in",
-          "via-setup-command": "xnatworks/xnat2bids-setup:1.7:xnat2bids",
+          "via-setup-command": "xnatworks/xnat2bids-setup:1.8:xnat2bids",
           "load-children": false
         }
       ],

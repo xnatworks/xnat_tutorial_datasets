@@ -188,9 +188,9 @@ What to look for:
 
 - The command JSONs are verified against the hashes in `containers/manifest.yml`.
 - The MRIQC assessor command uses
-  `xnatworks/xnat2bids-setup:1.7:xnat2bids`.
+  `xnatworks/xnat2bids-setup:1.8:xnat2bids`.
 - The MRIQC assessor handler uses
-  `xnatworks/bids-assessor-wrapup:2.5:bids-assessor-wrapup`.
+  `xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup`.
 - The BIDS validator assessor handler uses
   `xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup`.
 - The orchestration named `Tutorial BIDS Demo Pipeline` is assigned to the
@@ -289,7 +289,7 @@ and BIDS app input expectations.
 1. Open the same session.
 2. Launch `bids-materialize`.
 3. Confirm the wrapper uses
-   `xnatworks/xnat2bids-setup:1.7:xnat2bids`.
+   `xnatworks/xnat2bids-setup:1.8:xnat2bids`.
 4. Run the command.
 5. Open command history and wait for completion.
 6. Open the session resources and find the `BIDS` resource.
@@ -309,7 +309,7 @@ What to look for:
 How to know it worked: the learner can open the `BIDS` resource and recognize a
 BIDS directory tree. If the `BIDS` resource is empty or missing, verify that
 scan-level NIfTI/BIDS resources were created by the conversion step and that the
-materialize wrapper uses `xnat2bids-setup:1.7`.
+materialize wrapper uses `xnat2bids-setup:1.8`.
 
 ## Validate The BIDS Dataset
 
@@ -321,7 +321,7 @@ BIDS validator assessor.
 1. Open the same session.
 2. Launch `bids-validator-v2`.
 3. Confirm the wrapper uses
-   `xnatworks/xnat2bids-setup:1.7:xnat2bids`.
+   `xnatworks/xnat2bids-setup:1.8:xnat2bids`.
 4. Run the command.
 5. Open command history and wait for the main validator and wrapup containers
    to complete.
@@ -354,7 +354,7 @@ the app, wrapup stores outputs in the XNAT data model.
 2. Launch `bids-mriqc-assessor`.
 3. Confirm its input is the session.
 4. Confirm the wrapper uses
-   `xnatworks/xnat2bids-setup:1.7:xnat2bids`.
+   `xnatworks/xnat2bids-setup:1.8:xnat2bids`.
 5. Run MRIQC with conservative resources for a live tutorial.
 6. Open command history.
 7. Open the generated assessor.
@@ -362,12 +362,12 @@ the app, wrapup stores outputs in the XNAT data model.
 
 What to look for:
 
-- A setup-helper container using `xnatworks/xnat2bids-setup:1.7` completes.
+- A setup-helper container using `xnatworks/xnat2bids-setup:1.8` completes.
 - The MRIQC container runs with image `nipreps/mriqc:24.0.2`.
 - The MRIQC command environment includes `PROJECT`, `SESSION_LABEL`, and
   `SESSION_ID`.
 - The output handler resolves
-  `xnatworks/bids-assessor-wrapup:2.5:bids-assessor-wrapup`.
+  `xnatworks/bids-assessor-wrapup:2.7:bids-assessor-wrapup`.
 - The wrapup container reaches `Complete`.
 - A new assessor appears under the session with xsi type similar to
   `bids:mriqcRunAssessorData`.
@@ -376,7 +376,7 @@ What to look for:
 How to know it worked: the session has an MRIQC assessor with a non-empty
 `DATA` resource. If the main MRIQC container completes but the assessor is
 missing, inspect the wrapup container and confirm it used
-`bids-assessor-wrapup:2.5`. If MRIQC fails before running, inspect setup-command
+`bids-assessor-wrapup:2.7`. If MRIQC fails before running, inspect setup-command
 logs and verify the session has a valid `BIDS` tree.
 
 Suggested discussion prompt: ask the learner to identify which artifacts belong
@@ -447,7 +447,7 @@ After the license is present:
 
 What to look for:
 
-- The setup-helper container uses `xnatworks/xnat2bids-setup:1.7`.
+- The setup-helper container uses `xnatworks/xnat2bids-setup:1.8`.
 - The fMRIPrep container uses `nipreps/fmriprep:25.2.5`.
 - Command resolution includes `LICENSES/fs_license.txt`.
 - fMRIPrep writes HTML reports and derivative files into the assessor `DATA`
@@ -532,7 +532,7 @@ MRIQC needs BIDS layout, not raw XNAT scan folders. Confirm the MRIQC wrapper
 uses the setup command:
 
 ```text
-xnatworks/xnat2bids-setup:1.7:xnat2bids
+xnatworks/xnat2bids-setup:1.8:xnat2bids
 ```
 
 If the setup command is missing or using an older image, reinstall the curated
