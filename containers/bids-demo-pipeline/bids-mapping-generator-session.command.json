@@ -58,10 +58,10 @@
     },
     {
       "name": "apply-suggestions",
-      "description": "Apply suggested BIDS names for unmatched series (default: false). Review the report first, then re-run with this enabled.",
+      "description": "Apply suggested BIDS names for unmatched series (default: true).",
       "type": "string",
       "required": false,
-      "default-value": "false",
+      "default-value": "true",
       "replacement-key": "#APPLY_SUGGESTIONS#",
       "command-line-flag": "--apply-suggestions"
     }
