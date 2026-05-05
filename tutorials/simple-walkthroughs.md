@@ -552,7 +552,7 @@ Walkthrough:
 9. Launch `bids-materialize` to save a session-level `BIDS` resource.
 10. Open that `BIDS` resource and inspect the materialized tree.
 11. Launch or review `bids-mriqc-assessor`; it should use
-   `xnatworks/xnat2bids-setup:1.7:xnat2bids` to stage BIDS layout.
+   `xnatworks/xnat2bids-setup:1.8:xnat2bids` to stage BIDS layout.
 12. Open the generated assessor and inspect its output resource.
 
 Expected result: You understand why DICOM stored in XNAT archive structure

@@ -40,7 +40,7 @@ profiles:
         wrapper_names:
           - "bids-materialize-session"
         command_json_path: "containers/bids-demo-pipeline/bids-materialize-session.command.json"
-        command_json_sha256: "9316612698344e0da10a598ef2541eec859ebac4f643f0f3acb14ca15fcf5666"
+        command_json_sha256: "f0afd6611247c788487bed33c00ff3f6c678ece368c96994a182ad015cd0c3b5"
       - id: "bids_validator"
         label: "Validate BIDS dataset"
         image: "bids/validator:2.5.6"
@@ -49,7 +49,7 @@ profiles:
         wrapper_names:
           - "bids-validator-v2-session"
         command_json_path: "containers/bids-demo-pipeline/bids-validator-v2-session-assessor.command.json"
-        command_json_sha256: "cac3e6a17b6f2806ea690f9a704242271d349d046bf0f652bc30adc16422d811"
+        command_json_sha256: "7440f1cc2e3d852fee897cc37eba59d85c0aa022745e43d59d5ef13faccc7904"
       - id: "bids_mriqc_assessor"
         label: "Run MRIQC assessor"
         image: "nipreps/mriqc:24.0.2"
@@ -58,7 +58,7 @@ profiles:
         wrapper_names:
           - "bids-mriqc-session-assessor"
         command_json_path: "containers/bids-demo-pipeline/bids-mriqc-session-assessor.command.json"
-        command_json_sha256: "cc5bef3afa44e913554a1cebbf42ed1d373926acd8241e2cf8933ac59aef1cda"
+        command_json_sha256: "19aae7aa57ce7d0a41f9f9899d06a91ae27fa6aef2ef758d0acf1e69830dd0d7"
       - id: "fmriprep_assessor"
         label: "Run fMRIPrep assessor"
         image: "nipreps/fmriprep:25.2.5"
@@ -67,7 +67,7 @@ profiles:
         wrapper_names:
           - "fmriprep-session-assessor"
         command_json_path: "containers/bids-demo-pipeline/fmriprep-session-assessor.command.json"
-        command_json_sha256: "abd5ef74ba08f6115e04639e3a2cd02725e1c818660f4f872b64c520aac11a04"
+        command_json_sha256: "50f87cbcd51d74b8e81aa3777216e7b3220373f65be486b01d4c501895fffb3e"
       - id: "qsiprep_assessor"
         label: "Run QSIPrep assessor"
         image: "pennlinc/qsiprep:1.1.1"
@@ -76,4 +76,4 @@ profiles:
         wrapper_names:
           - "qsiprep-session-assessor"
         command_json_path: "containers/bids-demo-pipeline/qsiprep-session-assessor.command.json"
-        command_json_sha256: "2a9fcac3c3e694fd9425511f266fe52c82fb0618cc99c7c4a9d591a1eed901a5"
+        command_json_sha256: "7732763352c1186b60d3db49979633a721162ab16a5d95dc72fa7edd140b1cbb"
