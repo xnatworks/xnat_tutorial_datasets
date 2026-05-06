@@ -21,9 +21,10 @@ metadata fields are missing by default.
 5. Note which fields preclinical work usually wants but **DICOM does not
    carry by default**: species, strain, anaesthesia, coil model, atlas
    space.
-6. Open a viewer and compare the spatial scale to a human dataset (load
-   `tcia_dicom_intro` or `niivue_demo_images` in another tab if you have
-   not already).
+6. Open a viewer and compare the spatial scale to a human dataset.
+   For DICOM (mouse session and `tcia_dicom_intro`), use OHIF. For
+   NIfTI (`niivue_demo_images`), use **Open with Workbench** — OHIF
+   does not open NIfTI files.
 7. Decide which preclinical metadata fields you would capture as a
    dynamic data type
    ([intermediate/07-dynamic-datatype](07-dynamic-datatype.md)).

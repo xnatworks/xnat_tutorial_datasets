@@ -26,7 +26,7 @@ vocabulary, then run
 | 06 | [Resource browser](intro/06-resource-browser.md) | `openneuro_flanker_bids` |
 | 07 | [Search, filter, and export](intro/07-search-and-export.md) | `openneuro_flanker_bids` |
 | 08 | [BIDS as an XNAT resource](intro/08-bids-as-resource.md) | `openneuro_flanker_bids` |
-| 09 | [Atlases and overlays in NiiVue](intro/09-niivue-overlays.md) | `niivue_demo_images` |
+| 09 | [Atlases and overlays — Open with Workbench](intro/09-niivue-overlays.md) | `niivue_demo_images` |
 
 ### Intermediate — one tool or concept, 15–30 min
 

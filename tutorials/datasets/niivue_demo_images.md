@@ -7,7 +7,11 @@ Allen, Cerebellum, Juelich, Thalamus, CIT168, PD25). It is a **reference
 library**, not a clinical dataset.
 
 For a workshop, this is the fastest way to populate a project with
-visually distinct, label-rich volumes for demoing the viewer stack.
+visually distinct, label-rich volumes for demoing NIfTI viewing through
+the [Workbench plugin](https://github.com/xnatworks/xnat_workbench)
+(**Open with Workbench**). OHIF is DICOM-only and cannot open these
+files — install Workbench if you want an integrated viewer for the
+NIfTI volumes.
 
 | | |
 |---|---|

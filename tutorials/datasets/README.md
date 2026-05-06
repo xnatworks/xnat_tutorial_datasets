@@ -54,6 +54,7 @@ Some lesson arcs span several datasets:
   [advanced/02](../advanced/02-monai-segmentation.md) and
   [advanced/03](../advanced/03-segmentation-comparison.md) for
   full-body.
-- **Viewers** — `niivue_demo_images` is the easiest "open lots of
-  volumes fast" project for viewer demos
-  ([intro/09](../intro/09-niivue-overlays.md)).
+- **NIfTI viewing** — `niivue_demo_images` is the easiest "open lots
+  of volumes fast" project for **Open with Workbench** demos
+  ([intro/09](../intro/09-niivue-overlays.md)). OHIF is DICOM-only and
+  does not open project-level NIfTI files.
