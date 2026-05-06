@@ -64,4 +64,4 @@ Goal: show that XNAT supports non-human imaging without changing its model.
 
 1. [intermediate/09-preclinical-mri](../intermediate/09-preclinical-mri.md) — `tcia_mouse_astrocytoma_mri`
 2. [intermediate/07-dynamic-datatype](../intermediate/07-dynamic-datatype.md) — `openneuro_ds002551_metadata`
-3. [advanced/05-rabies-rodent-fmri](../advanced/05-rabies-rodent-fmri.md)
+3. [advanced/03-rabies-rodent-fmri](../advanced/03-rabies-rodent-fmri.md)

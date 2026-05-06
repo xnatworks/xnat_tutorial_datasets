@@ -5,7 +5,7 @@ lessons à la carte for a workshop, a self-paced run, or a topic-specific
 demo.
 
 > A live, hosted version of these tutorials runs at
-> **<https://tutorials.demo.xnatworks.io/>** — the easiest way to try a lesson
+> **<https://tutorial.xnatworks.io>** — the easiest way to try a lesson
 > without standing up your own XNAT.
 
 If you are new to XNAT, start with [`tutorials/GLOSSARY.md`](tutorials/GLOSSARY.md)
@@ -50,11 +50,10 @@ For dataset provenance, licenses, and the mirrored-files inventory, see
 | # | Lesson | Recommended dataset | GPU |
 |---|---|---|:-:|
 | 01 | [Complete BIDS workflow](tutorials/advanced/01-complete-bids.md) | `bidscoin_dicom_to_bids` | — |
-| 02 | [MONAI Bundle segmentation](tutorials/advanced/02-monai-segmentation.md) | full-FOV abdomen+pelvis CT | yes |
-| 03 | [TotalSegmentator vs MONAI](tutorials/advanced/03-segmentation-comparison.md) | same CT as 02 | yes |
-| 04 | [nnU-Net dataset builder](tutorials/advanced/04-nnunet-dataset.md) | `msd_hippocampus_nnunet` | for inference |
-| 05 | [RABIES rodent fMRI](tutorials/advanced/05-rabies-rodent-fmri.md) | rodent rs-fMRI BIDS | optional |
-| 06 | [FitLins group analysis](tutorials/advanced/06-fitlins-group.md) | `fitlins_flanker_demo` | — |
+| 02 | [nnU-Net dataset builder](tutorials/advanced/02-nnunet-dataset.md) | `msd_hippocampus_nnunet` | for inference |
+| 03 | [RABIES rodent fMRI](tutorials/advanced/03-rabies-rodent-fmri.md) | rodent rs-fMRI BIDS | optional |
+| 04 | [FitLins group analysis](tutorials/advanced/04-fitlins-group.md) | `fitlins_flanker_demo` | — |
+| 05 | [TotalSegmentator](tutorials/advanced/05-totalsegmentator.md) | `tcia_prostate_aec` | yes |
 
 ### Admin — site configuration
 
@@ -90,7 +89,7 @@ For upstream sources, licenses, and mirrored-file inventories see
 
 ## Trying it without standing up XNAT
 
-The hosted demo at <https://tutorials.demo.xnatworks.io/> runs a current XNAT
+The hosted demo at <https://tutorial.xnatworks.io> runs a current XNAT
 with the tutorial plugin pre-loaded. It is the recommended starting
 point for someone evaluating XNAT or trying a lesson before installing
 anything locally.

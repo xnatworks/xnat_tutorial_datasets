@@ -60,17 +60,17 @@ You should see one `*.nii.gz` and one `*.json`.
 - Open command history → failed run → stderr. Most failures are caused by
   a non-image folder (no DICOM image data) or by a project where the
   `dcm2niix` wrapper is not enabled.
-- For aggressively-anonymised DICOMs, the
-  [MONAI bundle container](../advanced/02-monai-segmentation.md) has a
-  pydicom cleanup fallback that produces a converted NIfTI even when
-  dcm2niix alone refuses.
+- For aggressively-anonymised DICOMs that dcm2niix rejects (bad private
+  tags, missing pixel data references), strip the offending tags with
+  pydicom locally before re-importing, or open the failed run's stderr
+  for the specific tag that caused the rejection.
 
 ## Talking points
 
 - dcm2niix is the de-facto standard for DICOM→NIfTI in research; it ships
   in every BIDS pipeline.
-- The scan-level `NIFTI` resource label is the convention many downstream
-  containers (MONAI, BIDS pipelines) auto-detect.
+- The scan-level `NIFTI` resource label is the convention most downstream
+  containers (BIDS pipelines, segmentation containers) auto-detect.
 
 Next: [intermediate/05-container-basics](05-container-basics.md) for the
 container model in general.
