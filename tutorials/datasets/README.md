@@ -10,7 +10,7 @@ The plugin manifest (`config/tutorial-datasets.example.yml`) defines
 upstream sources, fallback mirrors in this repo, ingest mechanics, and
 project defaults. These cards are the human-readable companion. For
 upstream sources, licenses, and mirrored-file inventories see
-[`../../README.md`](../../README.md).
+[`../../DATASETS.md`](../../DATASETS.md).
 
 ## Cards
 

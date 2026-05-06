@@ -93,6 +93,8 @@ bit identical files.
 
 ## Reference
 
-- [`../README.md`](../README.md) — canonical lesson index.
+- [`../../README.md`](../../README.md) — canonical lesson index (repo
+  root).
 - `../sources.yml` — authoritative dataset source list.
-- `../../README.md` — dataset inventory (this repo's root).
+- [`../../DATASETS.md`](../../DATASETS.md) — dataset inventory,
+  provenance, and licenses.
