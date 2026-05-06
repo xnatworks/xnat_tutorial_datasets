@@ -5,7 +5,7 @@ lessons à la carte for a workshop, a self-paced run, or a topic-specific
 demo.
 
 > A live, hosted version of these tutorials runs at
-> **<https://tutorial.xnatworks.io>** — the easiest way to try a lesson
+> **<https://tutorials.demo.xnatworks.io/>** — the easiest way to try a lesson
 > without standing up your own XNAT.
 
 If you are new to XNAT, start with [`tutorials/GLOSSARY.md`](tutorials/GLOSSARY.md)
@@ -90,7 +90,7 @@ For upstream sources, licenses, and mirrored-file inventories see
 
 ## Trying it without standing up XNAT
 
-The hosted demo at <https://tutorial.xnatworks.io> runs a current XNAT
+The hosted demo at <https://tutorials.demo.xnatworks.io/> runs a current XNAT
 with the tutorial plugin pre-loaded. It is the recommended starting
 point for someone evaluating XNAT or trying a lesson before installing
 anything locally.
