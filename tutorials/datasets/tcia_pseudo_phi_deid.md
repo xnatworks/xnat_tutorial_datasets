@@ -1,83 +1,37 @@
-# TCIA Pseudo-PHI-DICOM-Data — anonymization teaching
+# `tcia_pseudo_phi_deid` — TCIA Pseudo-PHI-DICOM-Data
 
-## Why this dataset
-
-This is the **canonical teaching dataset for DICOM de-identification**,
-published by NIH/CIP. The "Pseudo-PHI" series intentionally contains
-synthetic PHI in the *places* PHI typically appears in real clinical
-DICOMs — patient name, date of birth, accession number, free-text fields,
-private tags, burned-in pixel data. Researchers and IT admins use it to
-verify that their anonymization pipelines actually scrub everything they
-think they scrub.
-
-It's a known-failure-mode teaching tool: every supposedly-anonymized
-output you produce can be checked against a source that has known
-PHI-shaped content in known places.
+The canonical teaching dataset for DICOM de-identification. Synthetic
+PHI in the *places* PHI normally appears in real clinical DICOMs:
+patient name, date of birth, accession number, free-text fields, private
+tags. Use it to verify that anonymisation pipelines actually scrub
+everything you think they scrub.
 
 | | |
 |---|---|
 | Modality | CT |
-| License | CC-BY-4.0 |
+| Format | DICOM |
+| License | CC-BY 4.0 |
 | Source | [TCIA Pseudo-PHI-DICOM-Data](https://www.cancerimagingarchive.net/collection/pseudo-phi-dicom-data/) |
 | Plugin id | `tcia_pseudo_phi_deid` |
 | Default project | `XNAT_TUTORIAL_DEID` |
-| Series pulled | 2 DICOM files (ultra-tiny) |
+| Files | 2 DICOM (intentionally tiny) |
 
-## Download via the tutorial plugin
+## Load it
 
-**UI** — Admin → **Tutorial Datasets** (`${XNAT_HOST}/xnat-tutorial/datasets.html`).
-Find `tcia_pseudo_phi_deid` in the list, click **Prepare**, set the project id, submit.
+UI — **Tools → Tutorial Datasets**, find `tcia_pseudo_phi_deid`,
+**Prepare**.
 
-**REST** (admin auth required):
-
-```bash
-# stage source files only — leaves them in the plugin staging area
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  ${XNAT_HOST}/xapi/tutorials/datasets/tcia_pseudo_phi_deid/download
-
-# stage + create the project + import (typical)
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  "${XNAT_HOST}/xapi/tutorials/datasets/tcia_pseudo_phi_deid/prepare?projectId=XNAT_TUTORIAL_DEID"
-```
+REST — see
+[reference/rest-cheatsheet § Tutorial dataset loader](../reference/rest-cheatsheet.md#tutorial-dataset-loader).
 
 ## What you get in XNAT
 
-- Project `XNAT_TUTORIAL_DEID`
-- 1 subject, 1 CT scan, 2 DICOM files
+- Project `XNAT_TUTORIAL_DEID`.
+- 1 subject, 1 CT scan, 2 DICOM files.
+- Each file's headers contain pseudo-PHI in the standard PHI tag
+  positions.
 
-## Beginner checkpoints
+## Lessons that use this dataset
 
-What this dataset teaches: DICOM headers can contain sensitive values, and
-de-identification should be checked against real header fields.
-
-What to look for in XNAT: open the CT scan, then inspect the `DICOM` resource
-and a DICOM header/tag view.
-
-How to know import worked: the project has one CT scan with two DICOM files,
-and the header contains pseudo-PHI-shaped fields intentionally placed for the
-exercise.
-
-What to check first if it does not: confirm the scan has a `DICOM` resource and
-that you are looking at the source import, not a post-anonymization copy.
-
-## Walkthrough
-
-1. **Look at the headers as imported** — XNAT scan page → DICOM Headers.
-   Note PatientName, PatientBirthDate, PatientID, AccessionNumber, plus
-   any private tags. These were intentionally populated.
-2. **Apply XNAT anonymization** — site-level or project-level scripts.
-   Triage anonymization, then promote to archive.
-3. **Compare** — pull the same headers post-anonymization. Discuss what
-   was kept vs scrubbed and *why* (date shifts, hash IDs, etc.).
-4. **Talk about gotchas** — burned-in PHI in pixel data, private vendor
-   tags, OCR for text overlays. Tools like `dicom-deid-ocr` (a container
-   already on most XNAT demo instances) handle pixel-level PHI.
-
-## Talking points
-
-- Anonymization is a process, not a flag. Different jurisdictions
-  (HIPAA, GDPR, NHS) require different scrub levels.
-- The "Pseudo-PHI" naming convention is widely cited — searching for it
-  in the literature lands on de-identification methodology papers.
-- For research-data sharing under XNAT, pair with the `ctp_anon`
-  container for batch CTP-based anonymization with auditable rules.
+- Intro: [04 DICOM headers](../intro/04-dicom-headers.md).
+- Intermediate: [02 de-identification](../intermediate/02-deidentification.md).

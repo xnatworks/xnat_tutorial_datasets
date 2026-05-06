@@ -1,91 +1,48 @@
-# FitLins Flanker demo — group-level GLM
+# `fitlins_flanker_demo` — group-level FitLins Flanker
 
-## Why this dataset
-
-Same scientific basis as [`openneuro_flanker_bids`](openneuro_flanker_bids.md)
-— OpenNeuro ds000102 — but loaded **at group scale** (multiple subjects
-on import) so you can demo first- and second-level analysis end-to-end
-through FitLins inside XNAT.
-
-FitLins is a BIDS-App that consumes a `model.json` (BIDS Stats Models
-spec), runs subject-level GLMs, and combines them at the group level.
-It's the closest thing to a *fully reproducible* fMRI analysis: the
-model file describes contrasts and combinations declaratively, the BIDS
-input is fixed, the container is pinned — re-running on a new subject
-is a single command.
+Same scientific basis as
+[`openneuro_flanker_bids`](openneuro_flanker_bids.md) — OpenNeuro
+ds000102 — but loaded **at group scale** (multiple subjects on import)
+so a tutorial can demo first- and second-level analysis end-to-end with
+FitLins inside XNAT.
 
 | | |
 |---|---|
 | Workflow | First-level + group-level GLM |
+| Format | BIDS (multi-subject) |
 | License | PDDL |
 | Source | [OpenNeuro ds000102](https://openneuro.org/datasets/ds000102) |
 | Plugin id | `fitlins_flanker_demo` |
-| Loader | `grouplevel_fitlins_flanker` (Group-Level plugin import) |
+| Loader | `grouplevel_fitlins_flanker` |
 | Default project | `XNAT_TUTORIAL_FITLINS` |
 
-## Download via the tutorial plugin
+## Load it
 
-**UI** — Admin → **Tutorial Datasets** (`${XNAT_HOST}/xnat-tutorial/datasets.html`).
-Find `fitlins_flanker_demo` in the list, click **Prepare**, set the project id, submit.
+UI — **Tools → Group-Level Datasets**, find `fitlins_flanker_demo`,
+**Prepare**.
 
-**REST** (admin auth required):
+REST — see
+[reference/rest-cheatsheet § Tutorial dataset loader](../reference/rest-cheatsheet.md#tutorial-dataset-loader).
 
-```bash
-# stage source files only — leaves them in the plugin staging area
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  ${XNAT_HOST}/xapi/tutorials/datasets/fitlins_flanker_demo/download
+The Group-Level loader creates subjects, MR sessions, T1w + Flanker BOLD
+scans, NIfTI image resources, and BIDS metadata for the entire group.
 
-# stage + create the project + import (typical)
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  "${XNAT_HOST}/xapi/tutorials/datasets/fitlins_flanker_demo/prepare?projectId=XNAT_TUTORIAL_FITLINS"
-```
+## Caveat — fallback availability
 
-The Group-Level plugin handles import: creates subjects, MR sessions, T1w
-and BOLD scans, NIfTI image resources, and BIDS metadata for the entire
-group.
+This dataset is large; it is **not** mirrored as a normal raw GitHub
+file. For an offline-friendly fallback, publish the assembled archive
+as a GitHub release asset or in object storage and configure the loader
+source URL accordingly. See
+[admin/03 plugin loader admin](../admin/03-plugin-loader-admin.md).
 
 ## What you get in XNAT
 
-- Project `XNAT_TUTORIAL_FITLINS`
-- N subjects, 1 session each, T1w + Flanker BOLD per session
+- Project `XNAT_TUTORIAL_FITLINS`.
+- N subjects, 1 session each, T1w + Flanker BOLD per session.
 - BIDS metadata wired through — every session is independently
-  preprocessable and the project resolves as a BIDS dataset for
-  group-level work
+  preprocessable, and the project resolves as a BIDS dataset for
+  group-level work.
 
-## Beginner checkpoints
+## Lessons that use this dataset
 
-What this dataset teaches: group analysis depends on consistent single-subject
-inputs plus a project-level model, not one isolated scan.
-
-What to look for in XNAT: open the project subject list, then one subject's
-session, and then return to project resources for group-level files such as a
-model JSON.
-
-How to know import worked: the project has multiple subjects with similar T1w
-and BOLD resources. A group tutorial should not proceed if only one subject was
-created.
-
-What to check first if it does not: inspect the group-level loader result and
-project resources. If subjects are missing, fix import before launching FitLins
-or discussing group statistics.
-
-## Walkthrough
-
-1. Show the project's subject list — explain why "1 dataset, many
-   subjects" needs a different ingest pattern (Group-Level plugin) than
-   single-session DICOM upload.
-2. Run **fMRIPrep** on all subjects (or a pre-run cache).
-3. Run **FitLins** with a Flanker `model.json`:
-   - First level: contrast `incongruent − congruent` per subject.
-   - Group level: one-sample t-test across the contrast.
-4. Inspect the group activation map: anterior cingulate + dlPFC, the
-   classic Flanker conflict signature.
-
-## Talking points
-
-- BIDS Stats Models is the FAIR analogue to FreeSurfer recon-all stats
-  files: a contract for how analyses are specified.
-- FitLins demonstrates that XNAT can host *and* run group analyses —
-  not just a DICOM bucket.
-- For sites with their own task data, the same FitLins wrapper takes any
-  BIDS dataset with a model.json — no code changes.
+- Advanced: [06 FitLins group analysis](../advanced/06-fitlins-group.md).

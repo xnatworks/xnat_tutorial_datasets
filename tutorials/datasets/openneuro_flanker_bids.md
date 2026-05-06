@@ -1,104 +1,44 @@
-# OpenNeuro ds000102 Flanker BIDS subset
+# `openneuro_flanker_bids` — OpenNeuro ds000102 Flanker
 
-## Why this dataset
-
-ds000102 is one of the **earliest publicly shared task-fMRI datasets**
-from OpenNeuro (formerly OpenfMRI), and is still the go-to teaching set
-for the Eriksen Flanker conflict-monitoring paradigm. 26 subjects each
-ran a single Flanker task run plus a T1w anatomical, all in BIDS layout
-with proper events.tsv files. It's the dataset behind countless fMRIPrep,
-FitLins, and FSL FEAT tutorials.
-
-The Flanker task itself is a behavioral classic: subjects respond to a
-central arrow flanked by congruent or incongruent arrows. The contrast
-between congruent and incongruent trials is one of the most replicated
-fMRI activations in the literature (anterior cingulate, dorsolateral
-prefrontal cortex). Demos that produce visible activation in 10 minutes
-on a single subject earn instant credibility.
+A single subject from one of the earliest publicly shared task-fMRI
+datasets — the Eriksen Flanker conflict-monitoring paradigm. Already in
+BIDS layout with anatomical T1w, BOLD, and `events.tsv`. Small enough to
+land + preprocess + analyse in one workshop slot.
 
 | | |
 |---|---|
 | Modality | MR (T1w + BOLD) |
 | Task | Eriksen Flanker |
+| Format | BIDS / NIfTI |
 | License | PDDL (older OpenNeuro convention; equivalent to public domain) |
 | Source | [OpenNeuro ds000102](https://openneuro.org/datasets/ds000102) |
 | Plugin id | `openneuro_flanker_bids` |
 | Default project | `XNAT_TUTORIAL_BIDS` |
-| Subjects (default) | 1 (sub-01) |
+| Subjects | 1 (`sub-01`) |
 
-## Download via the tutorial plugin
+## Load it
 
-**UI** — Admin → **Tutorial Datasets** (`${XNAT_HOST}/xnat-tutorial/datasets.html`).
-Find `openneuro_flanker_bids` in the list, click **Prepare**, set the project id, submit.
+UI — **Tools → Tutorial Datasets**, find `openneuro_flanker_bids`,
+**Prepare**.
 
-**REST** (admin auth required):
-
-```bash
-# stage source files only — leaves them in the plugin staging area
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  ${XNAT_HOST}/xapi/tutorials/datasets/openneuro_flanker_bids/download
-
-# stage + create the project + import (typical)
-curl -u ${XNAT_USER}:${XNAT_PASS} -X POST \
-  "${XNAT_HOST}/xapi/tutorials/datasets/openneuro_flanker_bids/prepare?projectId=XNAT_TUTORIAL_BIDS"
-```
+REST — see
+[reference/rest-cheatsheet § Tutorial dataset loader](../reference/rest-cheatsheet.md#tutorial-dataset-loader).
 
 ## What you get in XNAT
 
-- Project `XNAT_TUTORIAL_BIDS`
-- 1 subject (sub-01) with anatomical and 1 functional run
-- BIDS resource at the session level (already in BIDS layout — no
-  conversion needed)
+- Project `XNAT_TUTORIAL_BIDS`.
+- 1 subject (`sub-01`) with anatomical and functional data.
+- Session-level `BIDS` resource — already in BIDS layout, no conversion
+  needed.
 
-## Beginner checkpoints
+## Lessons that use this dataset
 
-What this dataset teaches: BIDS can be stored in XNAT as a structured resource
-that BIDS apps can consume without DICOM conversion.
-
-What to look for in XNAT: open the session-level `BIDS` resource and inspect
-`dataset_description.json`, `participants.tsv`, `anat`, `func`, and
-`*_events.tsv` files.
-
-How to know import worked: the BIDS resource contains a complete `sub-01`
-layout with T1w, BOLD, sidecar JSON, and events TSV files.
-
-What to check first if it does not: confirm the import created a resource
-named `BIDS` and not only a project resource with staged source files. If the
-resource is missing files, rerun prepare and inspect the loader summary.
-
-## What to do with it
-
-| Goal | Tool |
-|---|---|
-| Preprocess | `fMRIPrep` (already wrapped on most XNAT instances) |
-| First-level GLM | `FitLins` — see [fitlins_flanker_demo.md](fitlins_flanker_demo.md) for the group-level version |
-| QC | `MRIQC` |
-
-## Walkthrough
-
-1. Inspect the BIDS resource on the session. Show
-   `dataset_description.json`, `participants.tsv`, the events.tsv with
-   onset/duration/trial_type for each Flanker trial.
-2. Before launching fMRIPrep, add your own FreeSurfer license to the project if
-   it is not already present. Create or open project resource `LICENSES`, upload
-   the file as `fs_license.txt`, and confirm the project path is exactly
-   `LICENSES/fs_license.txt`. The fMRIPrep wrapper uses that file as
-   `/Project/fs_license.txt`.
-3. Launch fMRIPrep with
-   `--participant-label sub-01 --output-spaces MNI152NLin2009cAsym`.
-4. While it runs (~30 min), discuss BIDS-Apps as the pattern for
-   reproducible neuroimaging.
-5. View output: `sub-01_task-flanker_run-1_space-MNI152*_desc-preproc_bold.nii.gz`
-   in OHIF/Workbench. Confluence point with the BIDS resource on the
-   session means subsequent tools find inputs automatically.
-
-## Talking points
-
-- BIDS isn't just a folder layout; it's a **contract** that lets
-  pipelines compose without configuration. fMRIPrep, FitLins, MRIQC,
-  TractSeg, etc. all consume the same BIDS resource.
-- ds000102 is small enough to land + preprocess + analyze in one
-  course slot, but realistic enough that the activation maps are
-  publishable in concept.
-- The XNAT BIDS resource model lets you keep raw DICOMs on scans *and*
-  the BIDS view on the session in the same archive — no fork.
+- Intro: [06 resource browser](../intro/06-resource-browser.md),
+  [07 search and export](../intro/07-search-and-export.md),
+  [08 BIDS as a resource](../intro/08-bids-as-resource.md).
+- Intermediate: [03 BIDS validation](../intermediate/03-bids-validation.md),
+  [05 container basics](../intermediate/05-container-basics.md),
+  [06 MRIQC assessor](../intermediate/06-mriqc-assessor.md).
+- Advanced: serves as the BIDS-input fallback for
+  [01 complete BIDS](../advanced/01-complete-bids.md) when starting from
+  raw DICOM is not appropriate.
