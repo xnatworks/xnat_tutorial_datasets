@@ -1,5 +1,8 @@
 # Dataset Paths
 
+For lessons, see the repo root [`../README.md`](../README.md).
+For dataset provenance and licenses, see [`../DATASETS.md`](../DATASETS.md).
+
 The tutorial plugin builds fallback URLs by appending dataset-relative paths to
 the configured fallback base URL.
 

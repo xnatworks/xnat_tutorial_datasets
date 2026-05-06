@@ -28,7 +28,11 @@ to XNAT subjects, scans, and label resources.
    resources representing each MSD case.
 6. Open one subject. Find the source NIfTI and the label NIfTI as
    **separate** scan resources or session resources.
-7. Open both in a viewer that supports overlays. Toggle the label.
+7. Use **Open with Workbench** on the source NIfTI (NIfTI files cannot
+   be opened in OHIF — Workbench is the integrated NIfTI viewer; install
+   the [Workbench plugin](https://github.com/xnatworks/xnat_workbench)
+   if it is not present). Add the label NIfTI as an overlay and toggle
+   the label.
 
 ## Expected result
 

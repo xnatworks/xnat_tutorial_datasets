@@ -2,7 +2,7 @@
 
 Pre-built running orders for instructor-led sessions. Pick the one that
 matches your slot length and audience, or remix from the
-[lesson catalog](../README.md).
+[lesson catalog](../../README.md).
 
 ## 30-minute new-user tour
 

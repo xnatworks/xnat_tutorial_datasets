@@ -1,7 +1,11 @@
 # Open a scan in the viewer
 
 **Level:** Intro · **Time:** 10 min · **Recommended dataset:** `tcia_dicom_intro`
-(also works with `niivue_demo_images`, `tcia_mouse_astrocytoma_mri`)
+(also works with `tcia_mouse_astrocytoma_mri`)
+
+> This lesson uses the OHIF viewer on a DICOM session. **OHIF does not
+> open NIfTI files.** For NIfTI viewing (e.g. `niivue_demo_images`) use
+> [intro/09 — Open with Workbench](09-niivue-overlays.md) instead.
 
 ## Goal
 
