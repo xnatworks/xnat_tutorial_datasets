@@ -23,6 +23,7 @@ These files are small workshop subsets, not full public datasets.
 | `datasets/xnat-tutorial/reproin_dicom_to_bids/archive.zip` | HeuDiConv/ReproIn example DICOM phantom | University of Arizona / ReproIn / HeuDiConv teaching dataset; cite HeuDiConv and ReproIn materials |
 | `datasets/xnat-tutorial/bidscoin_dicom_to_bids/archive.zip` | BIDScoin tutorial DICOM data | Curated `sub-001` raw DICOM subset from the public BIDScoin tutorial data; cite BIDScoin and its tutorial materials |
 | `datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip` | TCIA Mouse-Astrocytoma | The Cancer Imaging Archive, Mouse-Astrocytoma collection; Creative Commons Attribution 3.0 Unported |
+| `datasets/xnat-tutorial/tcia_prostate_aec/archive.zip` | TCIA Prostate-AEC | The Cancer Imaging Archive, Prostate-AEC collection; single-subject pelvis CT (`Prostate-AEC-044`, 166 DICOM files); Creative Commons Attribution 4.0 International |
 | `datasets/grouplevel/msd/Task04_Hippocampus.tar` | Medical Segmentation Decathlon / MONAI mirror | MSD Task04 Hippocampus; CC-BY-SA 4.0 |
 
 The group-level tutorial source catalog is in
@@ -366,3 +367,39 @@ or another LFS-aware endpoint.
 4. Update `SHA256SUMS`.
 5. Update this README with source, credit, license, and exact mirrored files.
 6. Update the tutorial plugin manifest if the fallback path changes.
+
+## TCIA Prostate-AEC Pelvis CT Subset
+
+Original source:
+
+- TCIA collection page:
+  `https://www.cancerimagingarchive.net/collection/prostate-aec/`
+
+Credit:
+
+- Data are from The Cancer Imaging Archive (TCIA) Prostate-AEC
+  collection.
+- License label used by the tutorial manifest:
+  Creative Commons Attribution 4.0 International.
+
+Mirrored files:
+
+- `datasets/xnat-tutorial/tcia_prostate_aec/archive.zip`
+
+Subset contents:
+
+- Subject `Prostate-AEC-044`, single RX-simulation pelvis CT series.
+- 166 DICOM files (`SeriesInstanceUID` is preserved in each file's
+  metadata).
+- ZIP structure follows the source XNAT archive layout
+  (`Prostate-AEC-044/scans/2-Pelvis/resources/DICOM/files/*.dcm`).
+- RTStruct and AI-segmentation scans from the source session were
+  intentionally excluded so the subset is a clean "CT in →
+  segmentation out" input for the TotalSegmentator advanced lesson.
+
+Tutorial use:
+
+- Used as the recommended dataset for
+  [`advanced/05 — TotalSegmentator`](tutorials/advanced/05-totalsegmentator.md).
+- The pelvis FOV is large enough to produce non-empty multi-organ
+  TotalSegmentator output but small enough for a live workshop slot.

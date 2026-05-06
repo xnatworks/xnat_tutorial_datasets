@@ -40,6 +40,4 @@ REST — see
 
 ## Lessons that use this dataset
 
-- Advanced: [04 nnU-Net dataset](../advanced/04-nnunet-dataset.md).
-- Pair with [advanced/03 segmentation comparison](../advanced/03-segmentation-comparison.md)
-  if you want to evaluate pretrained models against the MSD ground truth.
+- Advanced: [02 nnU-Net dataset](../advanced/02-nnunet-dataset.md).

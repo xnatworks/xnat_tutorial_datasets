@@ -20,6 +20,7 @@ upstream sources, licenses, and mirrored-file inventories see
 | [`tcia_collection_smallest`](tcia_collection_smallest.md) | Same series, loaded by collection query. | DICOM |
 | [`tcia_pseudo_phi_deid`](tcia_pseudo_phi_deid.md) | TCIA Pseudo-PHI-DICOM — synthetic PHI for de-identification teaching. | DICOM |
 | [`tcia_mouse_astrocytoma_mri`](tcia_mouse_astrocytoma_mri.md) | Preclinical mouse MRI from TCIA Mouse-Astrocytoma. | DICOM |
+| [`tcia_prostate_aec`](tcia_prostate_aec.md) | Pelvis CT from TCIA Prostate-AEC for TotalSegmentator. | DICOM |
 | [`reproin_dicom_to_bids`](reproin_dicom_to_bids.md) | ReproIn-encoded DICOM phantom for HeuDiConv-style conversion. | DICOM |
 | [`bidscoin_dicom_to_bids`](bidscoin_dicom_to_bids.md) | BIDScoin tutorial DICOM (11 series) for the complete BIDS workflow. | DICOM |
 | [`openneuro_flanker_bids`](openneuro_flanker_bids.md) | One-subject Flanker BIDS slice from OpenNeuro ds000102. | BIDS / NIfTI |
@@ -41,19 +42,18 @@ Some lesson arcs span several datasets:
 - **Single-subject vs group** —
   `openneuro_flanker_bids` (1 subject) →
   `fitlins_flanker_demo` (group) →
-  [advanced/06](../advanced/06-fitlins-group.md).
+  [advanced/04](../advanced/04-fitlins-group.md).
 - **Human → preclinical bridge** —
   `tcia_dicom_intro` → `tcia_mouse_astrocytoma_mri` →
-  [advanced/05 RABIES](../advanced/05-rabies-rodent-fmri.md).
+  [advanced/03 RABIES](../advanced/03-rabies-rodent-fmri.md).
 - **Dynamic metadata** —
   `openneuro_ds002551_metadata` →
   [intermediate/07](../intermediate/07-dynamic-datatype.md) and
   [intermediate/08](../intermediate/08-custom-forms.md).
 - **Segmentation** — `msd_hippocampus_nnunet` for nnU-Net
-  ([advanced/04](../advanced/04-nnunet-dataset.md)) plus
-  [advanced/02](../advanced/02-monai-segmentation.md) and
-  [advanced/03](../advanced/03-segmentation-comparison.md) for
-  full-body.
+  ([advanced/02](../advanced/02-nnunet-dataset.md)); `tcia_prostate_aec`
+  for TotalSegmentator
+  ([advanced/05](../advanced/05-totalsegmentator.md)).
 - **NIfTI viewing** — `niivue_demo_images` is the easiest "open lots
   of volumes fast" project for **Open with Workbench** demos
   ([intro/09](../intro/09-niivue-overlays.md)). OHIF is DICOM-only and

@@ -45,4 +45,4 @@ source URL accordingly. See
 
 ## Lessons that use this dataset
 
-- Advanced: [06 FitLins group analysis](../advanced/06-fitlins-group.md).
+- Advanced: [04 FitLins group analysis](../advanced/04-fitlins-group.md).

@@ -37,5 +37,5 @@ REST — see
   [08 custom forms](../intermediate/08-custom-forms.md).
 - Pair with `tcia_mouse_astrocytoma_mri` for a combined cohort-metadata
   + imaging story, or with
-  [advanced/05 RABIES](../advanced/05-rabies-rodent-fmri.md) for the
+  [advanced/03 RABIES](../advanced/03-rabies-rodent-fmri.md) for the
   full preclinical fMRI pipeline.

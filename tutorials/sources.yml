@@ -143,3 +143,24 @@ datasets:
       raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/tcia_mouse_astrocytoma_mri/archive.zip
     license: CC-BY-3.0
     citation: https://doi.org/10.7937/K9/TCIA.2018.WB7N9SE0
+
+  - tutorial: advanced/05-totalsegmentator
+    title: TCIA Prostate-AEC pelvis CT (single session subset)
+    modality: CT
+    purpose: pelvis CT with abdominal coverage for TotalSegmentator inference; small enough for a live workshop and big enough for non-empty multi-organ output
+    primary:
+      type: tcia
+      collection: Prostate-AEC
+      preferred_subject: Prostate-AEC-044
+      preferred_session: pelvis CT (scan 2 in source XNAT)
+      url: https://www.cancerimagingarchive.net/collection/prostate-aec/
+    fallback:
+      path: datasets/xnat-tutorial/tcia_prostate_aec/archive.zip
+      raw_url: https://raw.githubusercontent.com/xnatworks/xnat_tutorial_datasets/main/datasets/xnat-tutorial/tcia_prostate_aec/archive.zip
+    license: CC-BY-4.0
+    citation: https://www.cancerimagingarchive.net/collection/prostate-aec/
+    notes: |
+      Single-subject CT (Prostate-AEC-044, pelvis series, 166 DICOM files,
+      ~83 MB ZIP). Curated for the TotalSegmentator advanced lesson;
+      RTStruct and AI segmentation scans from the source session were
+      excluded so the import is a clean 'CT in -> segmentation out' demo.
