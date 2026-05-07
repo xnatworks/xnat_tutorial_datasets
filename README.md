@@ -87,6 +87,15 @@ For upstream sources, licenses, and mirrored-file inventories see
 - [`DATASETS.md`](DATASETS.md) — dataset inventory, provenance, and
   license details for every mirrored file.
 
+### XNAT project resources
+
+- <https://xnat.org> — XNAT project home.
+- <https://www.xnat.org/download/> — download XNAT.
+- <https://wiki.xnat.org> — administrator and user wiki (deep-linked
+  throughout these lessons).
+- <https://xnat.readthedocs.io/en/stable/> — XNAT documentation on
+  Read the Docs.
+
 ## Trying it without standing up XNAT
 
 The hosted demo at <https://demo.pro.xnatworks.io> runs a current XNAT

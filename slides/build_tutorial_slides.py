@@ -193,6 +193,18 @@ def main():
         ],
     )
 
+    # XNAT project resources
+    add_content_slide(
+        prs,
+        "XNAT project resources",
+        [
+            {"text": "xnat.org — project home", "size": 22},
+            {"text": "xnat.org/download/ — download XNAT", "size": 22},
+            {"text": "wiki.xnat.org — admin and user wiki", "size": 22},
+            {"text": "xnat.readthedocs.io/en/stable/ — Read the Docs", "size": 22},
+        ],
+    )
+
     prs.save(str(OUT))
     print(f"Wrote {OUT}")
     print(f"Slides: {len(prs.slides)}")
