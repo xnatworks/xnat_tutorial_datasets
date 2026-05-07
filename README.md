@@ -5,7 +5,7 @@ lessons à la carte for a workshop, a self-paced run, or a topic-specific
 demo.
 
 > A live, hosted version of these tutorials runs at
-> **<https://tutorial.xnatworks.io>** — the easiest way to try a lesson
+> **<https://demo.pro.xnatworks.io>** — the easiest way to try a lesson
 > without standing up your own XNAT.
 
 If you are new to XNAT, start with [`tutorials/GLOSSARY.md`](tutorials/GLOSSARY.md)
@@ -87,9 +87,18 @@ For upstream sources, licenses, and mirrored-file inventories see
 - [`DATASETS.md`](DATASETS.md) — dataset inventory, provenance, and
   license details for every mirrored file.
 
+### XNAT project resources
+
+- <https://xnat.org> — XNAT project home.
+- <https://www.xnat.org/download/> — download XNAT.
+- <https://wiki.xnat.org> — administrator and user wiki (deep-linked
+  throughout these lessons).
+- <https://xnat.readthedocs.io/en/stable/> — XNAT documentation on
+  Read the Docs.
+
 ## Trying it without standing up XNAT
 
-The hosted demo at <https://tutorial.xnatworks.io> runs a current XNAT
+The hosted demo at <https://demo.pro.xnatworks.io> runs a current XNAT
 with the tutorial plugin pre-loaded. It is the recommended starting
 point for someone evaluating XNAT or trying a lesson before installing
 anything locally.
